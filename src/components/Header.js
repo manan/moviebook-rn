@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#23201F',
   }
-})
+});
 
 export default Header;

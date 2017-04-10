@@ -13,6 +13,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F8F8F8'
   }
-})
+});
 
 export default Body;
