@@ -5,6 +5,7 @@ import Body from '../components/Body'
 
 
 export default class LoginScreen extends Component {
+  state = { user: {}}
   render(){
     return (
       <View style={styles.container}>
