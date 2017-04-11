@@ -12,13 +12,14 @@ export default class LoginScreen extends Component {
   }
 
   render(){
+    const { fontStyle } = styles;
     return (
-      <View style={styles.container}>
+      <View style={{ flex: 1 }}>
         <Header>
           <Image style={{flex:1, resizeMode: 'contain'}} source={require('../../assets/logo.jpg')}/>
         </Header>
         <Body>
-          <Text style={styles.fontStyle}>
+          <Text style={fontStyle}>
             {this.state.text}
           </Text>
         </Body>
@@ -28,9 +29,6 @@ export default class LoginScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   fontStyle: {
     justifyContent: 'center',
     textAlign: 'center',

@@ -1,14 +1,14 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
-const Body = (props) => (
-  <View style={styles.container}>
-    {props.children}
+const Body = ({ children }) => (
+  <View style={styles.containerStyle}>
+    {children}
   </View>
 );
 
 const styles = StyleSheet.create({
-  container: {
+  containerStyle: {
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#F8F8F8'
