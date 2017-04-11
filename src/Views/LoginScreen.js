@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import { Text, View, AppRegistry, StyleSheet } from 'react-native'
+import { Text, View, Image, AppRegistry, StyleSheet } from 'react-native'
 import Header from '../components/Header'
 import Body from '../components/Body'
 
 
 export default class LoginScreen extends Component {
-  state = { user: {}}
+  state = { text: 'Hello, World!' }
+
+  componentWillMount(){
+    this.setState({ text: 'Goodbye, World!' })
+  }
+
   render(){
     return (
       <View style={styles.container}>
-        <Header />
+        <Header>
+          <Image style={{flex:1, resizeMode: 'contain'}} source={require('../../assets/logo.jpg')}/>
+        </Header>
         <Body>
           <Text style={styles.fontStyle}>
-            Hello, World!
+            {this.state.text}
           </Text>
         </Body>
       </View>
