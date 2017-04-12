@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Image, AppRegistry, StyleSheet } from 'react-native'
-import Header from '../components/Header'
-import Body from '../components/Body'
+import { Header, Body } from '../components'
+import { images } from '../utils'
 
 
 export default class LoginScreen extends Component {
@@ -16,7 +16,7 @@ export default class LoginScreen extends Component {
     return (
       <View style={{ flex: 1 }}>
         <Header>
-          <Image style={{flex:1, resizeMode: 'contain'}} source={require('../../assets/logo.jpg')}/>
+          <Image style={{flex:1, resizeMode: 'contain'}} source={images.logo}/>
         </Header>
         <Body>
           <Text style={fontStyle}>

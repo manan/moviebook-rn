@@ -15,4 +15,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Body;
+export { Body };
