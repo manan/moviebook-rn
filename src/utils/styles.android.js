@@ -2,7 +2,8 @@ const colors = {
   THEME_RED: "#CD0034",
   THEME_BLACK: "#23201F",
   BLUE: "#007AFF",
-  WHITE: "#FFFFFF"
+  WHITE: "#FFFFFF",
+  OFF_WHITE: "#F8F8F8"
 }
 
 const sharedStyles = {
@@ -10,7 +11,7 @@ const sharedStyles = {
     justifyContent: 'center',
     textAlign: 'center',
     fontSize: 16,
-    fontFamily: 'Arial Rounded MT Bold',
+    fontFamily: 'sans-serif-medium',
   },
   buttonTextStyle: {
     alignSelf: 'center',
@@ -18,7 +19,7 @@ const sharedStyles = {
     color: colors.WHITE,
     fontSize: 16,
     fontWeight: '600',
-    fontFamily: 'Arial Rounded MT Bold',
+    fontFamily: 'sans-serif-medium',
     paddingTop: 5,
     paddingBottom: 5,
   }

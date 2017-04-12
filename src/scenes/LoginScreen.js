@@ -36,7 +36,8 @@ export default class LoginScreen extends Component {
   }
 
   render(){
-    const { fontStyle, buttonTextStyle, boxSpinnerStyle } = sharedStyles
+    const { fontStyle, buttonTextStyle, boxSpinnerStyle } = sharedStyles;
+    const { sideMargins } = styles;
     return (
       <View style={{ flex: 1 }}>
         <Header>
@@ -44,13 +45,14 @@ export default class LoginScreen extends Component {
         </Header>
 
         <Body>
-          <Section style={[ styles.sideMargins, { marginTop: 40 } ]}>
+          <Section style={[ sideMargins, { marginTop: 40 } ]}>
             <Text style={ fontStyle }>
               { this.state.text }
             </Text>
           </Section>
-          <Section style={[ styles.sideMargins, { marginTop: 40 } ]}>
-            {this.renderLogInButton()}
+
+          <Section style={[ sideMargins, { marginTop: 40 } ]}>
+            { this.renderLogInButton() }
           </Section>
         </Body>
       </View>
