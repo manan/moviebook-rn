@@ -2,8 +2,8 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 
 const Body = ({ children }) => (
-  <View style={styles.containerStyle}>
-    {children}
+  <View style={ styles.containerStyle }>
+    { children }
   </View>
 );
 

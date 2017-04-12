@@ -4,7 +4,7 @@ import { colors } from '../utils/'
 
 const Button = ({ children, onPress, style }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={[ styles.buttonStyle, style ]} >
+    <TouchableOpacity onPress={ onPress } style={[ styles.buttonStyle, style ]} >
       { children }
     </TouchableOpacity>
   );

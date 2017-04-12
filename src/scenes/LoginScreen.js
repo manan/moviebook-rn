@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, Image, AppRegistry, StyleSheet } from 'react-native'
-import { Header, Body, Button, Section } from '../components'
-import { images, colors, sharedStyles } from '../utils'
+import { Text, View, Image, AppRegistry } from 'react-native'
+import { Header, Body, Button, Section } from '../components/'
+import { images, colors, sharedStyles } from '../utils/'
 
 
 export default class LoginScreen extends Component {
@@ -16,17 +16,13 @@ export default class LoginScreen extends Component {
     return (
       <View style={{ flex: 1 }}>
         <Header>
-          <Image style={{ flex:1, resizeMode: 'contain' }} source={ images.logo }/>
+          <Image style={{ flex: 1, resizeMode: 'contain' }} source={ images.logo }/>
         </Header>
+
         <Body>
-          <Text style={[ fontStyle, { fontSize: 20 } ]}>
-            { this.state.text }
-          </Text>
           <Section style={{ marginLeft: 100, marginRight: 100, marginTop: 40 }}>
             <Button>
-              <Text style={ buttonTextStyle }>
-                Log in
-              </Text>
+              <Text style={ buttonTextStyle }> Log in </Text>
             </Button>
           </Section>
         </Body>
