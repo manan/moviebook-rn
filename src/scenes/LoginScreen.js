@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Image, AppRegistry } from 'react-native'
-import { Header, Body, Button, Section } from '../components/'
+import { Header, Body, Button, Section,Spinner } from '../components/'
 import { images, colors, sharedStyles } from '../utils/'
 
 
