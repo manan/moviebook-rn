@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Image, AppRegistry } from 'react-native'
-import { Header, Body, Button, Section, BoxSpinner } from '../components/'
+import { Header, Body, Button, Section } from '../components/'
 import { images, colors, sharedStyles } from '../utils/'
 
 
@@ -25,7 +25,6 @@ export default class LoginScreen extends Component {
               <Text style={ buttonTextStyle }> Log in </Text>
             </Button>
           </Section>
-          <BoxSpinner style={{ marginRight: 100, marginLeft:100, height: 30 }}/>
         </Body>
       </View>
     );
