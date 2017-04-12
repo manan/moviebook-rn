@@ -14,6 +14,7 @@ const sharedStyles = {
   },
   buttonTextStyle: {
     alignSelf: 'center',
+    justifyContent: 'center',
     color: colors.WHITE,
     fontSize: 16,
     fontWeight: '600',

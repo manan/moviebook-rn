@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, Image, AppRegistry } from 'react-native'
-import { Header, Body, Button, Section,Spinner } from '../components/'
+import { Header, Body, Button, Section, BoxSpinner } from '../components/'
 import { images, colors, sharedStyles } from '../utils/'
 
 
@@ -12,7 +12,7 @@ export default class LoginScreen extends Component {
   }
 
   render(){
-    const { fontStyle, buttonTextStyle } = sharedStyles
+    const { fontStyle, buttonTextStyle, boxSpinnerStyle } = sharedStyles
     return (
       <View style={{ flex: 1 }}>
         <Header>
@@ -21,10 +21,11 @@ export default class LoginScreen extends Component {
 
         <Body>
           <Section style={{ marginLeft: 100, marginRight: 100, marginTop: 40 }}>
-            <Button>
+            <Button style={{ height: 30 }}>
               <Text style={ buttonTextStyle }> Log in </Text>
             </Button>
           </Section>
+          <BoxSpinner style={{ marginRight: 100, marginLeft:100, height: 30 }}/>
         </Body>
       </View>
     );
