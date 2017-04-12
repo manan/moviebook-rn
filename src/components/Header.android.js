@@ -10,7 +10,7 @@ const Header = ({ children }) => {
         { children }
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({

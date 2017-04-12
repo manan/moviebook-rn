@@ -12,7 +12,7 @@ const Header = ({ children }) => {
         { children }
       </View>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export { Header }
+export { Header };
