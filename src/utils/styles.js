@@ -5,6 +5,22 @@ const colors = {
   WHITE: "#FFFFFF"
 }
 
-const sharedStyles = {}
+const sharedStyles = {
+  fontStyle: {
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontSize: 16,
+    fontFamily: 'Arial Rounded MT Bold',
+  },
+  buttonTextStyle: {
+    alignSelf: 'center',
+    color: colors.WHITE,
+    fontSize: 16,
+    fontWeight: '600',
+    fontFamily: 'Arial Rounded MT Bold',
+    paddingTop: 5,
+    paddingBottom: 5,
+  }
+}
 
 export { sharedStyles, colors }

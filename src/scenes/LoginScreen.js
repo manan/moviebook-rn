@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, Image, AppRegistry, StyleSheet } from 'react-native'
 import { Header, Body, Button, Section } from '../components'
-import { images, colors } from '../utils'
+import { images, colors, sharedStyles } from '../utils'
 
 
 export default class LoginScreen extends Component {
@@ -12,17 +12,17 @@ export default class LoginScreen extends Component {
   }
 
   render(){
-    const { fontStyle, buttonTextStyle } = styles;
+    const { fontStyle, buttonTextStyle } = sharedStyles
     return (
       <View style={{ flex: 1 }}>
         <Header>
           <Image style={{ flex:1, resizeMode: 'contain' }} source={ images.logo }/>
         </Header>
         <Body>
-          <Text style={ fontStyle }>
-            {this.state.text}
+          <Text style={[ fontStyle, { fontSize: 20 } ]}>
+            { this.state.text }
           </Text>
-          <Section style={{ paddingLeft: 100, paddingRight: 100, paddingTop: 40 }}>
+          <Section style={{ marginLeft: 100, marginRight: 100, marginTop: 40 }}>
             <Button>
               <Text style={ buttonTextStyle }>
                 Log in
@@ -34,21 +34,3 @@ export default class LoginScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  fontStyle: {
-    justifyContent: 'center',
-    textAlign: 'center',
-    fontSize: 20,
-    fontFamily: 'Arial Hebrew',
-  },
-  buttonTextStyle: {
-    flex: 1,
-    alignSelf: 'center',
-    color: colors.WHITE,
-    fontSize: 16,
-    fontWeight: '600',
-    paddingTop: 10,
-    paddingBottom: 10,
-  }
-});

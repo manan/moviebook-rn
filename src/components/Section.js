@@ -13,8 +13,7 @@ const styles = {
   containerStyle: {
     justifyContent: 'flex-start',
     flexDirection: 'row',
-    position: 'relative',
-    backgroundColor: '#2F201F'
+    position: 'relative'
   }
 };
 

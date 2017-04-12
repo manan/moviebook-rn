@@ -16,8 +16,6 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     backgroundColor: colors.THEME_RED,
     borderRadius: 5,
-    borderWidth: 1,
-    borderColor: colors.THEME_RED,
   }
 })
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, StatusBar, StyleSheet } from 'react-native'
+import { View, StatusBar, StyleSheet } from 'react-native'
 import { colors } from '../utils/'
 
 const Header = ({ children }) => {
