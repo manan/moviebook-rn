@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
-import { Text, View, Image, ActivityIndicator, StyleSheet, AppRegistry } from 'react-native';
-import { Header, Body, Button, Section } from '../components/';
+import { Header, Body, Button, Input, Section } from '../components/';
 import { images, colors, sharedStyles } from '../utils/';
 import { connect } from 'react-redux';
 import { usernameChanged } from '../actions';
+import {
+  Text,
+  View,
+  TouchableWithoutFeedback,
+  Image,
+  ActivityIndicator,
+  Keyboard,
+  StyleSheet,
+  AppRegistry
+} from 'react-native';
 
 class LoginScreen extends Component {
   state = { text: "Hello, World!", loading: false }
@@ -20,6 +29,7 @@ class LoginScreen extends Component {
     }
   }
 
+  // Render functions
   renderLogInButton(){
     if (this.state.loading){
       return (
@@ -39,24 +49,36 @@ class LoginScreen extends Component {
   render(){
     const { fontStyle, buttonTextStyle, boxSpinnerStyle } = sharedStyles;
     const { sideMargins } = styles;
+
     return (
-      <View style={{ flex: 1 }}>
-        <Header>
-          <Image style={{ flex: 1, resizeMode: 'contain' }} source={ images.logo }/>
-        </Header>
+      <TouchableWithoutFeedback style={{ flex: 1 }} onPress={ Keyboard.dismiss }>
+        <View style={{ flex: 1 }}>
+          <Header>
+            <Image style={{ flex: 1, resizeMode: 'contain' }} source={ images.logo }/>
+          </Header>
 
-        <Body>
-          <Section style={[ sideMargins, { marginTop: 40 } ]}>
-            <Text style={ fontStyle }>
-              { this.state.text }
-            </Text>
-          </Section>
+          <Body>
+            <Section style={[ sideMargins, { marginTop: 40 } ]}>
+              <Text style={ fontStyle }>
+                { this.state.text }
+              </Text>
+            </Section>
 
-          <Section style={[ sideMargins, { marginTop: 40 } ]}>
-            { this.renderLogInButton() }
-          </Section>
-        </Body>
-      </View>
+            <Section style={ sideMargins }>
+              <Input
+                value = { this.state.username }
+                placeholder = { 'username' }
+                onChangeText = {username => this.setState({ username })}
+                height = { 30 }
+                 />
+            </Section>
+
+            <Section style={[ sideMargins, { marginTop: 40 } ]}>
+              { this.renderLogInButton() }
+            </Section>
+          </Body>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
@@ -73,4 +95,4 @@ const mapStateToProps = store => {
   return { user: store.user };
 }
 
-export default connect(mapStateToProps, usernameChanged)(LoginScreen);
+export default connect(mapStateToProps, { usernameChanged })(LoginScreen);
