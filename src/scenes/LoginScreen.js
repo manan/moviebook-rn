@@ -5,24 +5,28 @@ import { images, colors, sharedStyles } from '../utils/';
 import { connect } from 'react-redux';
 
 class LoginScreen extends Component {
+  state = { text: "Hello, World!", loading: false }
 
-  componentDidMount(){
-    console.log("Here's the props:");
+  componentDidMount() {
     console.log(this.props);
   }
 
   onLogInButtonPressed(){
-    console.log('Goodbye, World!');
+    if (this.state.text === "Hello, World!"){
+      this.setState({ text: "Goodbye World!" });
+    } else {
+      this.setState({ text: "Hello, World!" });
+    }
   }
 
   renderLogInButton(){
-    // if (this.state.loading){
-    //   return (
-    //     <Button onPress= { this.onLogInButtonPressed.bind(this) } style={{ height: 30 }}>
-    //       <ActivityIndicator size='small'/>
-    //     </Button>
-    //   );
-    // }
+    if (this.state.loading){
+      return (
+        <Button onPress= { this.onLogInButtonPressed.bind(this) } style={{ height: 30 }}>
+          <ActivityIndicator size='small'/>
+        </Button>
+      );
+    }
 
     return (
       <Button onPress= { this.onLogInButtonPressed.bind(this) } style={{ height: 30 }}>
@@ -43,7 +47,7 @@ class LoginScreen extends Component {
         <Body>
           <Section style={[ sideMargins, { marginTop: 40 } ]}>
             <Text style={ fontStyle }>
-              Hello, World!
+              { this.state.text }
             </Text>
           </Section>
 
@@ -64,10 +68,10 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = state => {
-  console.log("Here's the state:");
-  console.log(state);
-  return { user: state.user };
+const mapStateToProps = store => {
+  return {
+    user: store.user
+  };
 }
 
 export default connect(mapStateToProps)(LoginScreen);
