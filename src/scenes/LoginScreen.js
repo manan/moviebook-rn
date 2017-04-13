@@ -3,6 +3,7 @@ import { Text, View, Image, ActivityIndicator, StyleSheet, AppRegistry } from 'r
 import { Header, Body, Button, Section } from '../components/';
 import { images, colors, sharedStyles } from '../utils/';
 import { connect } from 'react-redux';
+import { usernameChanged } from '../actions';
 
 class LoginScreen extends Component {
   state = { text: "Hello, World!", loading: false }
@@ -69,9 +70,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = store => {
-  return {
-    user: store.user
-  };
+  return { user: store.user };
 }
 
-export default connect(mapStateToProps)(LoginScreen);
+export default connect(mapStateToProps, usernameChanged)(LoginScreen);
