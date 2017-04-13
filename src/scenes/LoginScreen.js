@@ -2,33 +2,27 @@ import React, { Component } from 'react';
 import { Text, View, Image, ActivityIndicator, StyleSheet, AppRegistry } from 'react-native';
 import { Header, Body, Button, Section } from '../components/';
 import { images, colors, sharedStyles } from '../utils/';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducers from '../reducers/';
+import { connect } from 'react-redux';
 
-export default class LoginScreen extends Component {
-  state = { text: 'Goodbye, World!', loading: false }
+class LoginScreen extends Component {
 
-  componentWillMount(){
-    this.setState({ text: 'Hello, World!' });
+  componentDidMount(){
+    console.log("Here's the props:");
+    console.log(this.props);
   }
 
   onLogInButtonPressed(){
-    if (this.state.text === 'Goodbye, World!') {
-      this.setState({ text: 'Hello, World!' })
-    } else {
-      this.setState({ text: 'Goodbye, World!' });
-    }
+    console.log('Goodbye, World!');
   }
 
   renderLogInButton(){
-    if (this.state.loading){
-      return (
-        <Button onPress= { this.onLogInButtonPressed.bind(this) } style={{ height: 30 }}>
-          <ActivityIndicator size='small'/>
-        </Button>
-      );
-    }
+    // if (this.state.loading){
+    //   return (
+    //     <Button onPress= { this.onLogInButtonPressed.bind(this) } style={{ height: 30 }}>
+    //       <ActivityIndicator size='small'/>
+    //     </Button>
+    //   );
+    // }
 
     return (
       <Button onPress= { this.onLogInButtonPressed.bind(this) } style={{ height: 30 }}>
@@ -41,25 +35,23 @@ export default class LoginScreen extends Component {
     const { fontStyle, buttonTextStyle, boxSpinnerStyle } = sharedStyles;
     const { sideMargins } = styles;
     return (
-      <Provider store={createStore(reducers)}>
-        <View style={{ flex: 1 }}>
-          <Header>
-            <Image style={{ flex: 1, resizeMode: 'contain' }} source={ images.logo }/>
-          </Header>
+      <View style={{ flex: 1 }}>
+        <Header>
+          <Image style={{ flex: 1, resizeMode: 'contain' }} source={ images.logo }/>
+        </Header>
 
-          <Body>
-            <Section style={[ sideMargins, { marginTop: 40 } ]}>
-              <Text style={ fontStyle }>
-                { this.state.text }
-              </Text>
-            </Section>
+        <Body>
+          <Section style={[ sideMargins, { marginTop: 40 } ]}>
+            <Text style={ fontStyle }>
+              Hello, World!
+            </Text>
+          </Section>
 
-            <Section style={[ sideMargins, { marginTop: 40 } ]}>
-              { this.renderLogInButton() }
-            </Section>
-          </Body>
-        </View>
-      </Provider>
+          <Section style={[ sideMargins, { marginTop: 40 } ]}>
+            { this.renderLogInButton() }
+          </Section>
+        </Body>
+      </View>
     );
   }
 }
@@ -70,4 +62,12 @@ const styles = StyleSheet.create({
     marginRight: 80,
     marginTop: 20
   }
-})
+});
+
+const mapStateToProps = state => {
+  console.log("Here's the state:");
+  console.log(state);
+  return { user: state.user };
+}
+
+export default connect(mapStateToProps)(LoginScreen);
