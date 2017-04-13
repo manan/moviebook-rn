@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, Image, ActivityIndicator, StyleSheet, AppRegistry } from 'react-native'
-import { Header, Body, Button, Section } from '../components/'
-import { images, colors, sharedStyles } from '../utils/'
-
+import { Text, View, Image, ActivityIndicator, StyleSheet, AppRegistry } from 'react-native';
+import { Header, Body, Button, Section } from '../components/';
+import { images, colors, sharedStyles } from '../utils/';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from '../reducers/';
 
 export default class LoginScreen extends Component {
   state = { text: 'Goodbye, World!', loading: false }
@@ -39,23 +41,25 @@ export default class LoginScreen extends Component {
     const { fontStyle, buttonTextStyle, boxSpinnerStyle } = sharedStyles;
     const { sideMargins } = styles;
     return (
-      <View style={{ flex: 1 }}>
-        <Header>
-          <Image style={{ flex: 1, resizeMode: 'contain' }} source={ images.logo }/>
-        </Header>
+      <Provider store={createStore(reducers)}>
+        <View style={{ flex: 1 }}>
+          <Header>
+            <Image style={{ flex: 1, resizeMode: 'contain' }} source={ images.logo }/>
+          </Header>
 
-        <Body>
-          <Section style={[ sideMargins, { marginTop: 40 } ]}>
-            <Text style={ fontStyle }>
-              { this.state.text }
-            </Text>
-          </Section>
+          <Body>
+            <Section style={[ sideMargins, { marginTop: 40 } ]}>
+              <Text style={ fontStyle }>
+                { this.state.text }
+              </Text>
+            </Section>
 
-          <Section style={[ sideMargins, { marginTop: 40 } ]}>
-            { this.renderLogInButton() }
-          </Section>
-        </Body>
-      </View>
+            <Section style={[ sideMargins, { marginTop: 40 } ]}>
+              { this.renderLogInButton() }
+            </Section>
+          </Body>
+        </View>
+      </Provider>
     );
   }
 }
