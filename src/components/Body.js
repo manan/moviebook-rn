@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { colors } from '../utils';
 
 const Body = ({ children }) => (
   <View style={ styles.containerStyle }>
@@ -11,7 +12,7 @@ const styles = StyleSheet.create({
   containerStyle: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: '#F8F8F8'
+    backgroundColor: colors.WHITE
   }
 });
 

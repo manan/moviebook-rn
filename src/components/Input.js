@@ -1,10 +1,19 @@
 import React from 'react';
-import { TextInput, View, Text } from 'react-native';
+import { TextInput, View } from 'react-native';
+import { colors } from '../utils';
 
 const Input = (props) => {
   const { inputStyle, containerStyle } = styles;
-  const { value, onChangeText, placeholder, secureTextEntry,
-    style, height, autoCorrect = false, autoCapitalize = 'none' } = props;
+  const {
+    value,
+    onChangeText,
+    placeholder,
+    secureTextEntry,
+    style,
+    height,
+    autoCorrect = false,
+    autoCapitalize = 'none'
+  } = props;
 
   return (
     <View style={[ containerStyle, { height: height } ]}>
@@ -19,18 +28,19 @@ const Input = (props) => {
       />
     </View>
   );
-};
+}
 
 const styles = {
   inputStyle: {
-    color: '#000000',
+    color: colors.THEME_GRAY,
     paddingRight: 5,
-    paddingLeft: 5,
+    paddingLeft: 10,
     lineHeight: 23,
     flex: 1,
     borderRadius: 5,
-    borderColor: '#CDCDCD',
-    borderWidth: 1
+    borderColor: colors.LIGHT_GRAY,
+    borderWidth: 1,
+    backgroundColor: colors.OFF_WHITE,
   },
   containerStyle: {
     flex: 1,
@@ -38,6 +48,6 @@ const styles = {
     alignItems: 'center',
     height: 40,
   }
-};
+}
 
 export { Input };

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Header, Body, Button, Input, Section } from '../components/';
-import { images, colors, sharedStyles } from '../utils/';
 import { connect } from 'react-redux';
-import { usernameChanged } from '../actions';
-import {
+import { usernameChanged, passwordChanged } from '../actions';
+import ReactNative, {
   Text,
   View,
   TouchableWithoutFeedback,
+  TouchableOpacity,
   Image,
   ActivityIndicator,
   Keyboard,
@@ -14,41 +14,59 @@ import {
   AppRegistry
 } from 'react-native';
 
-class LoginScreen extends Component {
-  state = { text: "Hello, World!", loading: false }
+import {
+  images,
+  colors,
+  sharedStyles,
+  BUTTON_HEIGHT,
+  MIN_PASSWORD_LENGTH
+} from '../utils/';
 
-  componentDidMount() {
-    console.log(this.props);
-  }
+
+class LoginScreen extends Component {
+  state = { loading: false, buttonDisabled: false }
 
   onLogInButtonPressed(){
-    if (this.state.text === "Hello, World!"){
-      this.setState({ text: "Goodbye World!" });
-    } else {
-      this.setState({ text: "Hello, World!" });
-    }
+    console.log("log in");
+  }
+
+  onUsernameChanged(username){
+    this.props.usernameChanged(username);
+  }
+
+  onPasswordChanged(password){
+    this.props.passwordChanged(password);
+  }
+
+  onGetHelpSigningInPressed(){
+    console.log("Boiler plate function!");
   }
 
   // Render functions
   renderLogInButton(){
     if (this.state.loading){
       return (
-        <Button onPress= { this.onLogInButtonPressed.bind(this) } style={{ height: 30 }}>
+        <Button onPress= { this.onLogInButtonPressed.bind(this) }
+        disabled={ this.props.disabled }
+        style={{ height: BUTTON_HEIGHT }}>
           <ActivityIndicator size='small'/>
         </Button>
       );
     }
 
     return (
-      <Button onPress= { this.onLogInButtonPressed.bind(this) } style={{ height: 30 }}>
-        <Text style={ sharedStyles.buttonTextStyle }> Log in </Text>
+      <Button onPress= { this.onLogInButtonPressed.bind(this) }
+      disabled={ this.props.disabled }
+      style={{ height: BUTTON_HEIGHT }}>
+        <Text style={ sharedStyles.buttonTextStyle }> Login </Text>
       </Button>
     );
   }
 
   render(){
-    const { fontStyle, buttonTextStyle, boxSpinnerStyle } = sharedStyles;
+    const { smallFontStyle, buttonTextStyle, boxSpinnerStyle } = sharedStyles;
     const { sideMargins } = styles;
+    const { username, password } = this.props;
 
     return (
       <TouchableWithoutFeedback style={{ flex: 1 }} onPress={ Keyboard.dismiss }>
@@ -59,23 +77,39 @@ class LoginScreen extends Component {
 
           <Body>
             <Section style={[ sideMargins, { marginTop: 40 } ]}>
-              <Text style={ fontStyle }>
-                { this.state.text }
-              </Text>
+              <Input
+                value = { username }
+                placeholder = { 'username' }
+                onChangeText = { this.onUsernameChanged.bind(this) }
+                height = { BUTTON_HEIGHT }
+                 />
             </Section>
 
             <Section style={ sideMargins }>
               <Input
-                value = { this.state.username }
-                placeholder = { 'username' }
-                onChangeText = {username => this.setState({ username })}
-                height = { 30 }
+                secureTextEntry
+                value = { password }
+                placeholder = { 'password' }
+                onChangeText = { this.onPasswordChanged.bind(this) }
+                height = { BUTTON_HEIGHT }
                  />
             </Section>
 
-            <Section style={[ sideMargins, { marginTop: 40 } ]}>
+            <Section style={[ sideMargins, { marginTop: 15 } ]}>
               { this.renderLogInButton() }
             </Section>
+
+            <Section style={[ sideMargins, { marginTop: 15, flexDirection: 'column' } ]}>
+              <Text style={ smallFontStyle }>
+                Forgot your login details?
+              </Text>
+              <TouchableOpacity>
+                <Text style={[ smallFontStyle, { color: colors.THEME_RED } ]}>
+                  Get help signing in.
+                </Text>
+              </TouchableOpacity>
+            </Section>
+
           </Body>
         </View>
       </TouchableWithoutFeedback>
@@ -85,14 +119,20 @@ class LoginScreen extends Component {
 
 const styles = StyleSheet.create({
   sideMargins: {
-    marginLeft: 80,
-    marginRight: 80,
-    marginTop: 20
+    marginLeft: 50,
+    marginRight: 50,
+    marginTop: 5,
   }
 });
 
 const mapStateToProps = store => {
-  return { user: store.user };
+  console.log(store)
+  const { username, password } = store.user
+  return {
+    username: username,
+    password: password,
+    disabled: ( password.length >= MIN_PASSWORD_LENGTH) && (username.length >= 1 ) ? false : true
+  }
 }
 
-export default connect(mapStateToProps, { usernameChanged })(LoginScreen);
+export default connect(mapStateToProps, { usernameChanged, passwordChanged })(LoginScreen);
