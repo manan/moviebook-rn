@@ -1,9 +1,15 @@
 import React from 'react';
-import ReactNative, { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { colors } from '../utils/';
+import ReactNative, {
+  Text,
+  TouchableOpacity,
+  StyleSheet
+} from 'react-native';
 
 const Button = ({ children, onPress, disabled, style }) => (
-  <TouchableOpacity onPress={ onPress } disabled={ disabled }
+  <TouchableOpacity
+  onPress={ onPress }
+  disabled={ disabled }
   style={ disabled ? [ styles.disabledButtonStyle, style ] : [ styles.buttonStyle, style ]}>
     { children }
   </TouchableOpacity>
@@ -21,7 +27,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'stretch',
     justifyContent: 'center',
-    backgroundColor: '#d15373',
+    backgroundColor: colors.THEME_RED_LIGHT,
     borderRadius: 5,
   }
 });

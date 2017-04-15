@@ -1,9 +1,9 @@
 const colors = {
   THEME_RED: "#CD0034",
+  THEME_RED_LIGHT: "#D15776",
   THEME_BLACK: "#23201F",
-  THEME_GRAY: '#343434',
-  LIGHT_GRAY: '#CDCDCD',
-  BLUE: "#007AFF",
+  DARK_GREY: '#343434',
+  LIGHT_GREY: '#CDCDCD',
   WHITE: "#FFFFFF",
   OFF_WHITE: "#F8F8F8"
 }
@@ -19,7 +19,7 @@ const sharedStyles = {
     justifyContent: 'center',
     textAlign: 'center',
     fontFamily: 'ArialMT',
-    color: colors.THEME_GRAY,
+    color: colors.DARK_GREY,
     fontSize: 12
   },
   buttonTextStyle: {

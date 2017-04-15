@@ -32,13 +32,13 @@ const Input = (props) => {
 
 const styles = {
   inputStyle: {
-    color: colors.THEME_GRAY,
+    color: colors.DARK_GREY,
     paddingRight: 5,
     paddingLeft: 10,
     lineHeight: 23,
     flex: 1,
     borderRadius: 5,
-    borderColor: colors.LIGHT_GRAY,
+    borderColor: colors.LIGHT_GREY,
     borderWidth: 1,
     backgroundColor: colors.OFF_WHITE,
   },

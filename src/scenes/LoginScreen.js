@@ -31,11 +31,11 @@ class LoginScreen extends Component {
   }
 
   onUsernameChanged(username){
-    this.props.usernameChanged(username);
+    this.props.usernameChanged(username); // Action dispatched
   }
 
   onPasswordChanged(password){
-    this.props.passwordChanged(password);
+    this.props.passwordChanged(password); // Action dispatched
   }
 
   onGetHelpSigningInPressed(){
@@ -64,7 +64,7 @@ class LoginScreen extends Component {
   }
 
   render(){
-    const { smallFontStyle, buttonTextStyle, boxSpinnerStyle } = sharedStyles;
+    const { smallFontStyle } = sharedStyles;
     const { sideMargins } = styles;
     const { username, password } = this.props;
 
@@ -109,7 +109,6 @@ class LoginScreen extends Component {
                 </Text>
               </TouchableOpacity>
             </Section>
-
           </Body>
         </View>
       </TouchableWithoutFeedback>
