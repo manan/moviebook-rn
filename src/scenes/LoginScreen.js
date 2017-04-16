@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = store => {
-  console.log(store);
   const { username, password } = store.user;
   return {
     username,

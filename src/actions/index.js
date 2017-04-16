@@ -1,4 +1,4 @@
-import { urls } from '../utils';
+import { urls, params } from '../utils';
 import {
   USERNAME_CHANGED,
   PASSWORD_CHANGED,
@@ -19,15 +19,24 @@ export const passwordChanged = (password) => ({
 
 export const loginUser = ({ username, password }) => {
   return (dispatch) => {
-    fetch(urls.base_url + urls.token_auth, {
+    const body = {}
+    body[params.username] = username;
+    body[params.password] = password;
+    const request_params = {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ username, password })
-    })
-    .then(response => { return response.json() })
-    .then(data => console.log(data));
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }
+
+    fetch(urls.base_url + urls.token_auth, request_params)
+    .then(response => response.json())
+    .then(data => {
+      if (data.token != undefined){
+        loginUserSuccess(dispatch, data[params.token]);
+      } else {
+        loginUserFail(dispatch, data[params.non_field_errors]);
+      }
+    });
   }
 }
 
