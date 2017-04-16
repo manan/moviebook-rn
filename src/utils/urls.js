@@ -8,6 +8,9 @@ export const params = {
   token_response: 'token',
   non_field_errors: 'non_field_errors',
   username: 'username',
+  password: 'password',
+  first_name: 'first_name',
+  last_name: 'last_name',
+  email: 'email',
   user: 'user',
-  password: 'password'
 }
