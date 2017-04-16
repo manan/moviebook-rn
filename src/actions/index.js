@@ -1,3 +1,4 @@
+import { urls } from '../utils';
 import {
   USERNAME_CHANGED,
   PASSWORD_CHANGED,
@@ -16,17 +17,24 @@ export const passwordChanged = (password) => ({
     payload: password
 });
 
-// export const loginUser = ({ username, password }) => {
-//   return (dispatch) => {
-//     fetch('https://facebook.github.io/react-native/movies.json')
-//     .then((response) => console.log(response));
-//   }
-// }
-//
-// const loginUserSuccess = (dispatch, token) => {
-//   dispatch({ type: LOGIN_USER_SUCCESS, payload: token });
-// };
-//
-// const loginUserFail = (dispatch, errors) => {
-//   dispatch({ type: LOGIN_USER_FAIL, payload: errors });
-// };
+export const loginUser = ({ username, password }) => {
+  return (dispatch) => {
+    fetch(urls.base_url + urls.token_auth, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password })
+    })
+    .then(response => { return response.json() })
+    .then(data => console.log(data));
+  }
+}
+
+const loginUserSuccess = (dispatch, token) => {
+  dispatch({ type: LOGIN_USER_SUCCESS, payload: token });
+};
+
+const loginUserFail = (dispatch, errors) => {
+  dispatch({ type: LOGIN_USER_FAIL, payload: errors });
+};

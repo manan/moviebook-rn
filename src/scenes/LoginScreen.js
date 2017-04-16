@@ -134,7 +134,7 @@ const mapStateToProps = store => {
   return {
     username,
     password,
-    disabled: !(password.length >= MIN_PASSWORD_LENGTH) && (username.length >= 1)
+    disabled: !((password.length >= MIN_PASSWORD_LENGTH) && (username.length >= 1))
   }
 }
 
