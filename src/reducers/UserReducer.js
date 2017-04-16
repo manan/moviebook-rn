@@ -4,13 +4,13 @@ import {
 } from '../utils/types';
 
 const INITIAL_STATE = {
-  token : '',
+  token: '',
   errors: '',
   isAuthenticated: false,
 }
 
 export default (state = INITIAL_STATE, action) => {
-  switch (action.type){
+  switch (action.type) {
     case LOGIN_USER_SUCCESS:
       console.log('success');
       return { ...state, token: action.payload, isAuthenticated: true }

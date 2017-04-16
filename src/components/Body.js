@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { colors } from '../utils';
 
 const Body = ({ children }) => (
-  <View style={ styles.containerStyle }>
+  <View style={styles.containerStyle}>
     { children }
   </View>
 );

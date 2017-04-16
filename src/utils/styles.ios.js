@@ -1,11 +1,11 @@
 const colors = {
-  THEME_RED: "#CD0034",
-  THEME_RED_LIGHT: "#D15776",
-  THEME_BLACK: "#23201F",
+  THEME_RED: '#CD0034',
+  THEME_RED_LIGHT: '#D15776',
+  THEME_BLACK: '#23201F',
   DARK_GREY: '#343434',
   LIGHT_GREY: '#CDCDCD',
-  WHITE: "#FFFFFF",
-  OFF_WHITE: "#F8F8F8"
+  WHITE: '#FFFFFF',
+  OFF_WHITE: '#F8F8F8'
 }
 
 const sharedStyles = {

@@ -25,21 +25,12 @@ import { loginUser } from '../actions';
 class LoginScreen extends Component {
   state = { username: '', password: '', loading: false, buttonDisabled: true }
 
-  componentDidUpdate(){
+  componentDidUpdate() {
     this.setButtonState();
   }
 
-  /**
-   * enables and disables button based on username+password length
-   * does not change state unnecessarily
-   */
-  setButtonState(){
-    const { username, password, buttonDisabled } = this.state;
-    if ((password.length >= MIN_PASSWORD_LENGTH) && (username.length >= 1)) {
-      if (buttonDisabled) { this.setState({ buttonDisabled: false }) }
-    } else {
-      if (!buttonDisabled) { this.setState({ buttonDisabled: true }) }
-    }
+  onGetHelpSigningInPressed() {
+    console.log('Boiler plate function!');
   }
 
   onLogInButtonPressed() {
@@ -55,8 +46,15 @@ class LoginScreen extends Component {
     this.setState({ password });
   }
 
-  onGetHelpSigningInPressed() {
-    console.log('Boiler plate function!');
+  /**
+   * enables and disables button based on username+password length
+   * does not change state unnecessarily
+   */
+  setButtonState() {
+    const { username, password, buttonDisabled } = this.state;
+    if ((password.length >= MIN_PASSWORD_LENGTH) && (username.length >= 1) && buttonDisabled) {
+      this.setState({ buttonDisabled: false });
+    } else if (!buttonDisabled) { this.setState({ buttonDisabled: true }); }
   }
 
   // Render functions

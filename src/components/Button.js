@@ -1,16 +1,16 @@
 import React from 'react';
-import { colors } from '../utils/';
-import ReactNative, {
-  Text,
+import {
   TouchableOpacity,
   StyleSheet
 } from 'react-native';
+import { colors } from '../utils/';
 
 const Button = ({ children, onPress, disabled, style }) => (
   <TouchableOpacity
-  onPress={ onPress }
-  disabled={ disabled }
-  style={ disabled ? [ styles.disabledButtonStyle, style ] : [ styles.buttonStyle, style ]}>
+  onPress={onPress}
+  disabled={disabled}
+  style={disabled ? [styles.disabledButtonStyle, style] : [styles.buttonStyle, style]}
+  >
     { children }
   </TouchableOpacity>
 );

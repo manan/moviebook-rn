@@ -16,15 +16,15 @@ const Input = (props) => {
   } = props;
 
   return (
-    <View style={[ containerStyle, { height: height } ]}>
+    <View style={[containerStyle, { height }]}>
       <TextInput
-        secureTextEntry={ secureTextEntry }
-        placeholder={ placeholder }
-        autoCorrect={ autoCorrect }
-        style={[ inputStyle, style ]}
-        value={ value }
-        onChangeText={ onChangeText }
-        autoCapitalize = { autoCapitalize }
+        secureTextEntry={secureTextEntry}
+        placeholder={placeholder}
+        autoCorrect={autoCorrect}
+        style={[inputStyle, style]}
+        value={value}
+        onChangeText={onChangeText}
+        autoCapitalize={autoCapitalize}
       />
     </View>
   );

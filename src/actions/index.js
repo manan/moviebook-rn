@@ -9,16 +9,16 @@ export const loginUser = ({ username, password }) => {
     const body = {}
     body[params.username] = username;
     body[params.password] = password;
-    const request_params = {
+    const requestParams = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     }
 
-    fetch(urls.base_url + urls.token_auth, request_params)
+    fetch(urls.base_url + urls.token_auth, requestParams)
     .then(response => response.json())
     .then(data => {
-      if (data.token != undefined){
+      if (data.token !== undefined) {
         loginUserSuccess(dispatch, data[params.token]);
       } else {
         loginUserFail(dispatch, data[params.non_field_errors]);

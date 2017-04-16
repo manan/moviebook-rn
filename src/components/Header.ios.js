@@ -6,9 +6,9 @@ const Header = ({ children }) => {
   const { THEME_BLACK } = colors
   return (
     <View>
-      <StatusBar backgroundColor={ THEME_BLACK } barStyle="light-content"/>
-      <View style={{ height: 10, backgroundColor: THEME_BLACK }}/>
-      <View style={ styles.containerStyle }>
+      <StatusBar backgroundColor={THEME_BLACK} barStyle="light-content" />
+      <View style={{ height: 10, backgroundColor: THEME_BLACK }} />
+      <View style={styles.containerStyle}>
         { children }
       </View>
     </View>

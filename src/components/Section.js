@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 const Section = ({ children, style }) => (
-  <View style={[ styles.containerStyle, style ]}>
+  <View style={[styles.containerStyle, style]}>
     { children }
   </View>
 );

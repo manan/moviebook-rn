@@ -5,8 +5,8 @@ import { colors } from '../utils/'
 const Header = ({ children }) => {
   return (
     <View>
-      <StatusBar backgroundColor={ colors.THEME_BLACK } barStyle="light-content"/>
-      <View style={ styles.containerStyle }>
+      <StatusBar backgroundColor={colors.THEME_BLACK} barStyle="light-content" />
+      <View style={styles.containerStyle}>
         { children }
       </View>
     </View>
