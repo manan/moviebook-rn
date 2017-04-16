@@ -1,7 +1,8 @@
 import { urls, params } from '../utils';
 import {
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAIL
+  LOGIN_USER_FAIL,
+  CLEAR_AUTH,
 } from '../utils/types';
 
 export const loginUser = ({ username, password }) => {
@@ -21,7 +22,7 @@ export const loginUser = ({ username, password }) => {
       if (data.token !== undefined) {
         loginUserSuccess(dispatch, data[params.token]);
       } else {
-        loginUserFail(dispatch, data[params.non_field_errors]);
+        setTimeout(() => loginUserFail(dispatch, data[params.non_field_errors]), 10000);
       }
     });
   }
@@ -33,4 +34,8 @@ const loginUserSuccess = (dispatch, token) => {
 
 const loginUserFail = (dispatch, errors) => {
   dispatch({ type: LOGIN_USER_FAIL, payload: errors });
+};
+
+export const clearAuth = () => {
+  return { type: CLEAR_AUTH }
 };

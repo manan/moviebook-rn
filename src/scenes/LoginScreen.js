@@ -19,7 +19,7 @@ import {
   MIN_PASSWORD_LENGTH
 } from '../utils/';
 import { Header, Body, Button, Input, Section } from '../components/';
-import { loginUser } from '../actions';
+import { loginUser, clearAuth } from '../actions';
 
 
 class LoginScreen extends Component {
@@ -27,6 +27,7 @@ class LoginScreen extends Component {
 
   componentDidUpdate() {
     this.setButtonState();
+    this.setLoadingState();
   }
 
   onGetHelpSigningInPressed() {
@@ -34,7 +35,8 @@ class LoginScreen extends Component {
   }
 
   onLogInButtonPressed() {
-    console.log('log in');
+    this.props.clearAuth();
+    this.setState({ loading: true })
     this.props.loginUser({ username: this.state.username, password: this.state.password });
   }
 
@@ -52,15 +54,22 @@ class LoginScreen extends Component {
    */
   setButtonState() {
     const { username, password, buttonDisabled } = this.state;
-    if ((password.length >= MIN_PASSWORD_LENGTH) && (username.length >= 1) && buttonDisabled) {
-      this.setState({ buttonDisabled: false });
+    if ((password.length >= MIN_PASSWORD_LENGTH) && (username.length >= 1)) {
+      if (buttonDisabled) { this.setState({ buttonDisabled: false }); }
     } else if (!buttonDisabled) { this.setState({ buttonDisabled: true }); }
+  }
+
+  setLoadingState() {
+    const { token, errors } = this.props;
+    if ((token !== '' || errors !== '') && this.state.loading) {
+        this.setState({ loading: false });
+    }
   }
 
   // Render functions
   renderLogInButton() {
-    const { loading, buttonDisabled } = this.state;
-    if (loading) {
+    const { buttonDisabled } = this.state;
+    if (this.state.loading) {
       return (
         <Button
         onPress={this.onLogInButtonPressed.bind(this)}
@@ -144,4 +153,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(null, { loginUser })(LoginScreen);
+const mapStateToProps = store => {
+  return {
+    isAuthenticated: store.auth.isAuthenticated,
+    token: store.auth.token,
+    errors: store.auth.errors
+  }
+}
+
+export default connect(mapStateToProps, { loginUser, clearAuth })(LoginScreen);

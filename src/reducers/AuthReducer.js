@@ -1,6 +1,7 @@
 import {
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAIL
+  LOGIN_USER_FAIL,
+  CLEAR_AUTH
 } from '../utils/types';
 
 const INITIAL_STATE = {
@@ -11,6 +12,9 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case CLEAR_AUTH:
+      console.log('cleared');
+      return { ...INITIAL_STATE };
     case LOGIN_USER_SUCCESS:
       console.log('success');
       return { ...state, token: action.payload, isAuthenticated: true }
