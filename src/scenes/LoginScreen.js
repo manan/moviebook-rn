@@ -19,23 +19,40 @@ import {
   MIN_PASSWORD_LENGTH
 } from '../utils/';
 import { Header, Body, Button, Input, Section } from '../components/';
-import { usernameChanged, passwordChanged, loginUser } from '../actions';
+import { loginUser } from '../actions';
 
 
 class LoginScreen extends Component {
-  state = { loading: false, buttonDisabled: false }
+  state = { username: '', password: '', loading: false, buttonDisabled: true }
+
+  componentDidUpdate(){
+    this.setButtonState();
+  }
+
+  /**
+   * enables and disables button based on username+password length
+   * does not change state unnecessarily
+   */
+  setButtonState(){
+    const { username, password, buttonDisabled } = this.state;
+    if ((password.length >= MIN_PASSWORD_LENGTH) && (username.length >= 1)) {
+      if (buttonDisabled) { this.setState({ buttonDisabled: false }) }
+    } else {
+      if (!buttonDisabled) { this.setState({ buttonDisabled: true }) }
+    }
+  }
 
   onLogInButtonPressed() {
     console.log('log in');
-    this.props.loginUser({ username: this.props.username, password: this.props.password });
+    this.props.loginUser({ username: this.state.username, password: this.state.password });
   }
 
   onUsernameChanged(username) {
-    this.props.usernameChanged(username); // Action dispatched
+    this.setState({ username });
   }
 
   onPasswordChanged(password) {
-    this.props.passwordChanged(password); // Action dispatched
+    this.setState({ password });
   }
 
   onGetHelpSigningInPressed() {
@@ -44,11 +61,12 @@ class LoginScreen extends Component {
 
   // Render functions
   renderLogInButton() {
-    if (this.state.loading) {
+    const { loading, buttonDisabled } = this.state;
+    if (loading) {
       return (
         <Button
         onPress={this.onLogInButtonPressed.bind(this)}
-        disabled={this.props.disabled}
+        disabled={buttonDisabled}
         style={{ height: BUTTON_HEIGHT }}
         >
           <ActivityIndicator size='small' />
@@ -59,7 +77,7 @@ class LoginScreen extends Component {
     return (
       <Button
       onPress={this.onLogInButtonPressed.bind(this)}
-      disabled={this.props.disabled}
+      disabled={buttonDisabled}
       style={{ height: BUTTON_HEIGHT }}
       >
         <Text style={sharedStyles.buttonTextStyle}> Login </Text>
@@ -70,7 +88,7 @@ class LoginScreen extends Component {
   render() {
     const { smallFontStyle } = sharedStyles;
     const { sideMargins } = styles;
-    const { username, password } = this.props;
+    const { username, password } = this.state;
 
     return (
       <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
@@ -107,7 +125,7 @@ class LoginScreen extends Component {
               <Text style={smallFontStyle}>
                 Forgot your login details?
               </Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={this.onGetHelpSigningInPressed.bind(this)}>
                 <Text style={[smallFontStyle, { color: colors.THEME_RED }]}>
                   Get help signing in.
                 </Text>
@@ -128,15 +146,4 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = store => {
-  const { username, password } = store.user;
-  return {
-    username,
-    password,
-    disabled: !((password.length >= MIN_PASSWORD_LENGTH) && (username.length >= 1))
-  }
-}
-
-export default connect(mapStateToProps, {
-  usernameChanged, passwordChanged, loginUser
-})(LoginScreen);
+export default connect(null, { loginUser })(LoginScreen);

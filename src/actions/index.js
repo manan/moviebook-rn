@@ -1,21 +1,8 @@
 import { urls, params } from '../utils';
 import {
-  USERNAME_CHANGED,
-  PASSWORD_CHANGED,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL
 } from '../utils/types';
-
-
-export const usernameChanged = (username) => ({
-    type: USERNAME_CHANGED,
-    payload: username
-});
-
-export const passwordChanged = (password) => ({
-    type: PASSWORD_CHANGED,
-    payload: password
-});
 
 export const loginUser = ({ username, password }) => {
   return (dispatch) => {
