@@ -13,7 +13,6 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CLEAR_AUTH:
-      console.log('cleared');
       return { ...INITIAL_STATE };
     case LOGIN_USER_SUCCESS:
       console.log('success');

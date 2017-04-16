@@ -4,7 +4,8 @@ export const urls = {
 }
 
 export const params = {
-  token: 'token',
+  token_request: 'JWT ',
+  token_response: 'token',
   non_field_errors: 'non_field_errors',
   username: 'username',
   user: 'user',

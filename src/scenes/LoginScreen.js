@@ -59,6 +59,9 @@ class LoginScreen extends Component {
     } else if (!buttonDisabled) { this.setState({ buttonDisabled: true }); }
   }
 
+  /**
+   * shows ActivityIndicator based on current state
+   */
   setLoadingState() {
     const { token, errors } = this.props;
     if ((token !== '' || errors !== '') && this.state.loading) {
@@ -68,8 +71,8 @@ class LoginScreen extends Component {
 
   // Render functions
   renderLogInButton() {
-    const { buttonDisabled } = this.state;
-    if (this.state.loading) {
+    const { loading, buttonDisabled } = this.state;
+    if (loading) {
       return (
         <Button
         onPress={this.onLogInButtonPressed.bind(this)}

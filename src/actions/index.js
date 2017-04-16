@@ -5,6 +5,14 @@ import {
   CLEAR_AUTH,
 } from '../utils/types';
 
+const loginUserSuccess = (dispatch, token) => {
+  dispatch({ type: LOGIN_USER_SUCCESS, payload: token });
+};
+
+const loginUserFail = (dispatch, errors) => {
+  dispatch({ type: LOGIN_USER_FAIL, payload: errors });
+};
+
 export const loginUser = ({ username, password }) => {
   return (dispatch) => {
     const body = {}
@@ -15,26 +23,18 @@ export const loginUser = ({ username, password }) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     }
-
-    fetch(urls.base_url + urls.token_auth, requestParams)
+    fetch(urls.base_url + urls.token_auth, requestParams) // eslint-disable-line
     .then(response => response.json())
     .then(data => {
-      if (data.token !== undefined) {
-        loginUserSuccess(dispatch, data[params.token]);
+      const { token_response, non_field_errors } = params;
+      if (data[token_response] !== undefined) {
+        loginUserSuccess(dispatch, data[token_response]);
       } else {
-        setTimeout(() => loginUserFail(dispatch, data[params.non_field_errors]), 10000);
+        loginUserFail(dispatch, data[non_field_errors])
       }
     });
   }
 }
-
-const loginUserSuccess = (dispatch, token) => {
-  dispatch({ type: LOGIN_USER_SUCCESS, payload: token });
-};
-
-const loginUserFail = (dispatch, errors) => {
-  dispatch({ type: LOGIN_USER_FAIL, payload: errors });
-};
 
 export const clearAuth = () => {
   return { type: CLEAR_AUTH }
