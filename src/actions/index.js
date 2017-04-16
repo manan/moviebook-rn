@@ -1,3 +1,4 @@
+import { Actions } from 'react-native-router-flux';
 import { urls, params } from '../utils';
 import {
   LOGIN_USER_SUCCESS,
@@ -7,6 +8,8 @@ import {
 
 const loginUserSuccess = (dispatch, token) => {
   dispatch({ type: LOGIN_USER_SUCCESS, payload: token });
+
+  Actions.homeScreen();
 };
 
 const loginUserFail = (dispatch, errors) => {
