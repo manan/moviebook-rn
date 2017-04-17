@@ -10,9 +10,11 @@ import {
   LOG_OUT
 } from '../utils/types';
 
+// Actions
+
 export const loginUser = ({ username, password }) => {
   return (dispatch) => {
-    getToken({ username, password })
+    requestToken({ username, password })
     .then(response => response.json())
     .then(data => {
       const { token_response, non_field_errors } = params;
@@ -25,10 +27,22 @@ export const loginUser = ({ username, password }) => {
   }
 }
 
-const loginUserSuccess = (dispatch, { username, password, token }) => {
-  dispatch({ type: LOGIN_USER_SUCCESS, payload: token });
+export const logout = () => {
+  Actions.auth();
+  return { type: LOG_OUT }
+}
+
+export const clearAuth = () => {
+  return { type: CLEAR_AUTH }
+};
+
+// Action Helpers
+
+const loginUserSuccess = (dispatch, credentials) => {
+  const { username, password, token } = credentials;
   dispatch({ type: SET_CREDENTIALS, payload: { username, password } });
-  getSelfDetails(dispatch, { username, password, token })
+  dispatch({ type: LOGIN_USER_SUCCESS, payload: token });
+  getSelfDetails(dispatch, { username, password, token });
   Actions.home();
 };
 
@@ -36,8 +50,77 @@ const loginUserFail = (dispatch, errors) => {
   dispatch({ type: LOGIN_USER_FAIL, payload: errors });
 };
 
-export const getSelfDetails = (dispatch, { username, password, token }) => {
-  testfunc(dispatch, requestUserDetails, setAuthDetails, { username, password, token });
+const getSelfDetails = (dispatch, credentials) => {
+  getData(dispatch, requestUserDetails, setUserDetails, credentials);
+}
+
+// Request Functions
+
+const requestUserDetails = ({ token }) => {
+  const requestParams = {
+    method: 'GET',
+    headers: { Authorization: params.token_request + token },
+  }
+  return fetch(urls.base_url + urls.self_user_details, requestParams) // eslint-disable-line
+}
+
+const requestToken = ({ username, password }) => {
+  const requestParams = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      [params.username]: username,
+      [params.password]: password })
+  }
+  return fetch(urls.base_url + urls.token_auth, requestParams) // eslint-disable-line
+}
+
+// Storage Functions
+
+const setUserDetails = (dispatch, data) => {
+  const { first_name, last_name, email, id } = params;
+  dispatch({
+    type: SET_AUTH_DETAILS,
+    payload: {
+      id: data[id],
+      first_name: data[first_name],
+      last_name: data[last_name],
+      email: data[email]
+    }
+  });
+}
+
+// Abstract Functions
+
+const getData = (dispatch, requestFunc, storeFunc, credentials) => {
+  const { username, password, token } = credentials;
+  requestFunc({ token })
+  .then(response => {
+    if (response.ok) {
+      response.json()
+      .then(data => {
+        storeFunc(dispatch, data);
+      })
+    } else {
+      requestToken({ username, password })
+      .then(tokenresponse => {
+        if (tokenresponse.ok) {
+          tokenresponse.json()
+          .then(tokendata => {
+            const { token_response } = params;
+            dispatch({ type: RESET_TOKEN, payload: tokendata[token_response] });
+            requestFunc({ token: tokendata[token_response] })
+            .then(userresponse => userresponse.json())
+            .then(userdata => {
+              storeFunc(dispatch, userdata);
+            })
+          })
+        } else {
+          logout();
+        }
+      })
+    }
+  })
 }
 
 // export const getSelfDetails = (dispatch, { username, password, token }) => {
@@ -100,74 +183,3 @@ export const getSelfDetails = (dispatch, { username, password, token }) => {
 //     }
 //   })
 // }
-
-export const testfunc = (dispatch, requestFunc, storeFunc, { username, password, token }) => {
-  requestFunc({ token })
-  .then(response => {
-    if (response.ok) {
-      response.json()
-      .then(data => {
-        storeFunc(dispatch, data);
-      })
-    } else {
-      getToken({ username, password })
-      .then(tokenresponse => {
-        if (tokenresponse.ok) {
-          tokenresponse.json()
-          .then(tokendata => {
-            const { token_response } = params;
-            dispatch({ type: RESET_TOKEN, payload: tokendata[token_response] });
-            requestFunc({ token: tokendata[token_response] })
-            .then(userresponse => userresponse.json())
-            .then(userdata => {
-              storeFunc(dispatch, userdata);
-            })
-          })
-        } else {
-          logout();
-        }
-      })
-    }
-  })
-}
-
-const setAuthDetails = (dispatch, data) => {
-  const { first_name, last_name, email, id } = params;
-  dispatch({
-    type: SET_AUTH_DETAILS,
-    payload: {
-      id: data[id],
-      first_name: data[first_name],
-      last_name: data[last_name],
-      email: data[email]
-    }
-  });
-}
-
-const requestUserDetails = ({ token }) => {
-  const requestParams = {
-    method: 'GET',
-    headers: { Authorization: params.token_request + token },
-  }
-  return fetch(urls.base_url + urls.self_user_details, requestParams) // eslint-disable-line
-}
-
-const getToken = ({ username, password }) => {
-  const requestParams = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      [params.username]: username,
-      [params.password]: password })
-  }
-  return fetch(urls.base_url + urls.token_auth, requestParams) // eslint-disable-line
-}
-
-export const clearAuth = () => {
-  return { type: CLEAR_AUTH }
-};
-
-export const logout = () => {
-  Actions.auth();
-  return { type: LOG_OUT }
-}

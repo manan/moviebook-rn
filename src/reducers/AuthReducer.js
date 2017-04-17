@@ -40,10 +40,8 @@ export default (state = INITIAL_STATE, action) => {
         id: payload.id,
       }
     case LOGIN_USER_SUCCESS:
-      console.log('success');
       return { ...state, token: payload }
     case LOGIN_USER_FAIL:
-      console.log('fail');
       return { ...state, errors: payload }
     default:
       return state;

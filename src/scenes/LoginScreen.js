@@ -39,7 +39,6 @@ class LoginScreen extends Component {
   }
 
   onLogInButtonPressed() {
-    this.props.clearAuth();
     this.setState({ loading: true })
     this.props.loginUser({ username: this.state.username, password: this.state.password });
   }
