@@ -169,7 +169,6 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = store => {
   return {
-    isAuthenticated: store.auth.isAuthenticated,
     token: store.auth.token,
     errors: store.auth.errors
   }
