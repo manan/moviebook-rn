@@ -6,8 +6,12 @@ import HomeScreen from './scenes/HomeScreen';
 const RouterComponent = () => {
   return (
     <Router>
-      <Scene key="loginScreen" component={LoginScreen} hideNavBar initial />
-      <Scene key="homeScreen" component={HomeScreen} hideNavBar />
+      <Scene key="auth">
+        <Scene key="loginScreen" component={LoginScreen} hideNavBar initial />
+      </Scene>
+      <Scene key="home">
+        <Scene key="homeScreen" component={HomeScreen} hideNavBar initial />
+      </Scene>
     </Router>
   );
 }

@@ -8,8 +8,7 @@ import {
 
 const loginUserSuccess = (dispatch, token) => {
   dispatch({ type: LOGIN_USER_SUCCESS, payload: token });
-
-  Actions.homeScreen();
+  Actions.home();
 };
 
 const loginUserFail = (dispatch, errors) => {
@@ -18,13 +17,12 @@ const loginUserFail = (dispatch, errors) => {
 
 export const loginUser = ({ username, password }) => {
   return (dispatch) => {
-    const body = {}
-    body[params.username] = username;
-    body[params.password] = password;
     const requestParams = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
+      body: JSON.stringify({
+        [params.username]: username,
+        [params.password]: password })
     }
     fetch(urls.base_url + urls.token_auth, requestParams) // eslint-disable-line
     .then(response => response.json())
@@ -33,7 +31,7 @@ export const loginUser = ({ username, password }) => {
       if (data[token_response] !== undefined) {
         loginUserSuccess(dispatch, data[token_response]);
       } else {
-        loginUserFail(dispatch, data[non_field_errors])
+        loginUserFail(dispatch, data[non_field_errors][0])
       }
     });
   }

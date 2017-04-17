@@ -5,6 +5,7 @@ import {
   View,
   TouchableWithoutFeedback,
   TouchableOpacity,
+  Alert,
   Image,
   ActivityIndicator,
   Keyboard,
@@ -28,6 +29,9 @@ class LoginScreen extends Component {
   componentDidUpdate() {
     this.setButtonState();
     this.setLoadingState();
+    if (this.props.errors !== '') {
+      this.showAlert();
+    }
   }
 
   onGetHelpSigningInPressed() {
@@ -69,15 +73,22 @@ class LoginScreen extends Component {
     }
   }
 
+  showAlert() {
+    this.props.clearAuth();
+    Alert.alert('Authentication failed', this.props.errors,
+      [{ text: 'Try again', onPress: () => console.log('ok') }]
+    )
+  }
+
   // Render functions
   renderLogInButton() {
     const { loading, buttonDisabled } = this.state;
     if (loading) {
       return (
         <Button
-        onPress={this.onLogInButtonPressed.bind(this)}
-        disabled={buttonDisabled}
-        style={{ height: BUTTON_HEIGHT }}
+          onPress={this.onLogInButtonPressed.bind(this)}
+          disabled={buttonDisabled}
+          style={{ height: BUTTON_HEIGHT }}
         >
           <ActivityIndicator size='small' />
         </Button>
@@ -86,9 +97,9 @@ class LoginScreen extends Component {
 
     return (
       <Button
-      onPress={this.onLogInButtonPressed.bind(this)}
-      disabled={buttonDisabled}
-      style={{ height: BUTTON_HEIGHT }}
+        onPress={this.onLogInButtonPressed.bind(this)}
+        disabled={buttonDisabled}
+        style={{ height: BUTTON_HEIGHT }}
       >
         <Text style={sharedStyles.buttonTextStyle}> Login </Text>
       </Button>
