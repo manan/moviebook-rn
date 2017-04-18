@@ -9,3 +9,6 @@ export const LOG_OUT = 'log_out';
 export const SET_FRIEND_DETAILS = 'set_freind_details';
 
 export const SET_PROFILE_DETAILS = 'set_profile_details';
+
+export const SET_NEWSFEED = 'set_newsfeed';
+export const SET_MY_FEED = 'set_my_feed';
