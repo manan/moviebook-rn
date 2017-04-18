@@ -8,6 +8,8 @@ import {
   SET_CREDENTIALS,
   SET_PROFILE_DETAILS,
   SET_FRIEND_DETAILS,
+  SET_NEWSFEED,
+  SET_MY_FEED,
   RESET_TOKEN,
   LOG_OUT
 } from '../utils/types';
@@ -45,6 +47,7 @@ const loginUserSuccess = (dispatch, credentials) => {
   dispatch({ type: SET_CREDENTIALS, payload: { username, password } });
   dispatch({ type: LOGIN_USER_SUCCESS, payload: token });
   getProfileDetails(dispatch, { username, password, token });
+  getNewsfeed(dispatch, { username, password, token });
   Actions.home();
 };
 
@@ -56,6 +59,10 @@ const getProfileDetails = (dispatch, credentials) => {
   getData(dispatch, requestProfileDetails, setProfileDetails, credentials);
 }
 
+const getNewsfeed = (dispatch, credentials) => {
+  getData(dispatch, requestNewsfeed, setNewsfeed, credentials)
+}
+
 // Request Functions
 
 const requestProfileDetails = ({ token }) => {
@@ -64,6 +71,14 @@ const requestProfileDetails = ({ token }) => {
     headers: { Authorization: params.token_request + token },
   }
   return fetch(urls.base_url + urls.self_profile_details, requestParams) // eslint-disable-line
+}
+
+const requestNewsfeed = ({ token }) => {
+  const requestParams = {
+    method: 'GET',
+    headers: { Authorization: params.token_request + token },
+  }
+  return fetch(urls.base_url + urls.newsfeed, requestParams) // eslint-disable-line
 }
 
 const requestToken = ({ username, password }) => {
@@ -93,6 +108,7 @@ const setProfileDetails = (dispatch, data) => {
     followers,
     blocked,
     blocked_by,
+    posts
   } = params;
   dispatch({
     type: SET_AUTH_DETAILS,
@@ -121,6 +137,17 @@ const setProfileDetails = (dispatch, data) => {
       blocked: data[blocked],
       blocked_by: data[blocked_by]
     }
+  });
+  dispatch({
+    type: SET_MY_FEED,
+    payload: data[posts]
+  });
+}
+
+const setNewsfeed = (dispatch, data) => {
+  dispatch({
+    type: SET_NEWSFEED,
+    payload: data
   });
 }
 

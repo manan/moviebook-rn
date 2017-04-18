@@ -17,7 +17,9 @@ export const urls = {
   search_by_ids: 'profiles/search/userpids=',
 
   profile_update: 'profiles/update/',
-  user_update: 'users/update/'
+  user_update: 'users/update/',
+
+  newsfeed: 'posts/newsfeed/'
 }
 
 export const params = {
@@ -43,6 +45,8 @@ export const params = {
   followers: 'followers',
   blocked: 'blocked',
   blocked_by: 'blocked_by',
+
+  posts: 'posts',
 
   id: 'id'
 }
