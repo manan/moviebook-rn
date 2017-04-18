@@ -157,21 +157,23 @@ const getData = (dispatch, requestFunc, storeFunc, credentials) => {
   const { username, password, token } = credentials;
   requestFunc({ token })
   .then(response => {
+    console.log(response)
     if (response.ok) {
       response.json()
       .then(data => {
         storeFunc(dispatch, data);
       })
-    } else {
+    } else if (response.status === 401) {
       requestToken({ username, password })
       .then(tokenresponse => {
+        console.log(response)
         if (tokenresponse.ok) {
           tokenresponse.json()
           .then(tokendata => {
             const { token_response } = params;
             dispatch({ type: RESET_TOKEN, payload: tokendata[token_response] });
             requestFunc({ token: tokendata[token_response] })
-            .then(userresponse => userresponse.json())
+            .then(userresponse => { console.log(userresponse); userresponse.json(); })
             .then(userdata => {
               storeFunc(dispatch, userdata);
             })
@@ -180,8 +182,12 @@ const getData = (dispatch, requestFunc, storeFunc, credentials) => {
           logout();
         }
       })
+    } else {
+      console.log('SERVER SIDE ERROR!');
+      logout(); // SHOULD NEVER REACH HERE, IF DOES, SERVER SIDE ISSUE
     }
   })
+  .catch(() => logout())
 }
 
 // export const getSelfDetails = (dispatch, { username, password, token }) => {

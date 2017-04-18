@@ -21,7 +21,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
-  console.log(action);
+  console.log(action.type);
   switch (type) {
     case LOG_OUT:
       return { ...INITIAL_STATE }

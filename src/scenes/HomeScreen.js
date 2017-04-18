@@ -6,35 +6,38 @@ import {
   Image,
   TouchableWithoutFeedback,
   Keyboard,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
-import { sharedStyles, images } from '../utils'
+import { images } from '../utils';
 import {
   Header,
   Body,
   Section
 } from '../components';
+import Newsfeed from './Newsfeed';
 
 class HomeScreen extends Component {
   render() {
     const { sideMargins } = styles;
 
-    return (
-      <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
-        <View style={{ flex: 1 }}>
-          <Header>
-            <Image style={{ flex: 1, resizeMode: 'contain' }} source={images.logo} />
-          </Header>
+    //return (
+    //   <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
+    //     <View style={{ flex: 1 }}>
+    //       <Header>
+    //         <Image style={{ flex: 1, resizeMode: 'contain' }} source={images.logo} />
+    //       </Header>
+    //
+    //       <Body>
+    //         <Section style={[sideMargins, { marginTop: 40 }]} >
+    //           <Newsfeed />
+    //         </Section>
+    //       </Body>
+    //     </View>
+    //   </TouchableWithoutFeedback>
+    // )
 
-          <Body>
-            <Section style={[sideMargins, { marginTop: 40 }]}>
-              <Text style={sharedStyles.fontStyle}>
-                Hello, World!
-              </Text>
-            </Section>
-          </Body>
-        </View>
-      </TouchableWithoutFeedback>
+    return (
+      <Newsfeed />
     )
   }
 }
@@ -47,4 +50,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(HomeScreen);
+const mapStateToProps = store => {
+  return {
+    newsfeed: store.posts.newsfeed,
+    friends: store.friends
+  }
+}
+
+export default connect(mapStateToProps, {})(HomeScreen);
