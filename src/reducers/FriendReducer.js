@@ -12,7 +12,6 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
-  console.log(action);
   switch (type) {
     case LOG_OUT:
       return { ...INITIAL_STATE }

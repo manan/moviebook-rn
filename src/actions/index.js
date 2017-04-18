@@ -44,7 +44,7 @@ const loginUserSuccess = (dispatch, credentials) => {
   const { username, password, token } = credentials;
   dispatch({ type: SET_CREDENTIALS, payload: { username, password } });
   dispatch({ type: LOGIN_USER_SUCCESS, payload: token });
-  setTimeout(() => getSelfDetails(dispatch, { username, password, token }), 150000);
+  getProfileDetails(dispatch, { username, password, token });
   Actions.home();
 };
 
@@ -52,7 +52,7 @@ const loginUserFail = (dispatch, errors) => {
   dispatch({ type: LOGIN_USER_FAIL, payload: errors });
 };
 
-const getSelfDetails = (dispatch, credentials) => {
+const getProfileDetails = (dispatch, credentials) => {
   getData(dispatch, requestProfileDetails, setProfileDetails, credentials);
 }
 
