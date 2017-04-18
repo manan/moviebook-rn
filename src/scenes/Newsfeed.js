@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, ListView, FlatList, Image } from 'react-native';
+import { Text, ListView, Image } from 'react-native';
 import { sharedStyles, images } from '../utils';
-import newsfeed from './newsfeed.json';
 import { Header } from '../components';
 
 class Newsfeed extends Component {
@@ -40,24 +39,14 @@ class Newsfeed extends Component {
 
   render() {
     return (
-      // <ListView
-      //   style={{ flex: 1 }}
-      //   dataSource={this.dataSource}
-      //   renderRow={this.renderRow}
-      //   renderSectionHeader={this.renderHeader}
-      //   enableEmptySections
-      // />
-      <FlatList
-        data={newsfeed}
-        renderItem={({ item }) => <Text>{item.movie_title} </Text>}
-      />
+      <Text style={sharedStyles.fontStyle}>
+        Hello, World!
+      </Text>
     )
   }
 }
 
 const mapStateToProps = store => {
-  console.log('called');
-  console.log(store.posts.newsfeed);
   return {
     newsfeed: store.posts.newsfeed
   }
