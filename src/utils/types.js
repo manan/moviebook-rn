@@ -7,4 +7,5 @@ export const RESET_TOKEN = 'reset_token';
 export const LOG_OUT = 'log_out';
 
 export const SET_FRIEND_DETAILS = 'set_freind_details';
+
 export const SET_PROFILE_DETAILS = 'set_profile_details';
