@@ -22,10 +22,6 @@ class HomeScreen extends Component {
     return (
       <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
         <View style={{ flex: 1 }}>
-          <Header>
-            <Image style={{ flex: 1, resizeMode: 'contain' }} source={images.logo} />
-          </Header>
-
           <Body>
             <Section style={[sideMargins, { marginTop: 40 }]} >
               <Newsfeed />
