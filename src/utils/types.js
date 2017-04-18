@@ -5,3 +5,6 @@ export const SET_CREDENTIALS = 'set_credentials';
 export const SET_AUTH_DETAILS = 'set_auth_details';
 export const RESET_TOKEN = 'reset_token';
 export const LOG_OUT = 'log_out';
+
+export const SET_FRIEND_DETAILS = 'set_freind_details';
+export const SET_PROFILE_DETAILS = 'set_profile_details';

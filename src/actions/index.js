@@ -6,6 +6,8 @@ import {
   CLEAR_AUTH,
   SET_AUTH_DETAILS,
   SET_CREDENTIALS,
+  SET_PROFILE_DETAILS,
+  SET_FRIEND_DETAILS,
   RESET_TOKEN,
   LOG_OUT
 } from '../utils/types';
@@ -42,7 +44,7 @@ const loginUserSuccess = (dispatch, credentials) => {
   const { username, password, token } = credentials;
   dispatch({ type: SET_CREDENTIALS, payload: { username, password } });
   dispatch({ type: LOGIN_USER_SUCCESS, payload: token });
-  getSelfDetails(dispatch, { username, password, token });
+  setTimeout(() => getSelfDetails(dispatch, { username, password, token }), 150000);
   Actions.home();
 };
 
@@ -51,17 +53,17 @@ const loginUserFail = (dispatch, errors) => {
 };
 
 const getSelfDetails = (dispatch, credentials) => {
-  getData(dispatch, requestUserDetails, setUserDetails, credentials);
+  getData(dispatch, requestProfileDetails, setProfileDetails, credentials);
 }
 
 // Request Functions
 
-const requestUserDetails = ({ token }) => {
+const requestProfileDetails = ({ token }) => {
   const requestParams = {
     method: 'GET',
     headers: { Authorization: params.token_request + token },
   }
-  return fetch(urls.base_url + urls.self_user_details, requestParams) // eslint-disable-line
+  return fetch(urls.base_url + urls.self_profile_details, requestParams) // eslint-disable-line
 }
 
 const requestToken = ({ username, password }) => {
@@ -77,15 +79,47 @@ const requestToken = ({ username, password }) => {
 
 // Storage Functions
 
-const setUserDetails = (dispatch, data) => {
-  const { first_name, last_name, email, id } = params;
+const setProfileDetails = (dispatch, data) => {
+  const {
+    first_name,
+    last_name,
+    email,
+    user,
+    gender,
+    bio,
+    birth_date,
+    profile_picture,
+    followings,
+    followers,
+    blocked,
+    blocked_by,
+  } = params;
   dispatch({
     type: SET_AUTH_DETAILS,
     payload: {
-      id: data[id],
+      id: data[user],
       first_name: data[first_name],
       last_name: data[last_name],
       email: data[email]
+    }
+  });
+
+  dispatch({
+    type: SET_PROFILE_DETAILS,
+    payload: {
+      gender: data[gender],
+      bio: data[bio],
+      birth_date: data[birth_date],
+      profile_picture: data[profile_picture]
+    }
+  });
+  dispatch({
+    type: SET_FRIEND_DETAILS,
+    payload: {
+      followings: data[followings],
+      followers: data[followers],
+      blocked: data[blocked],
+      blocked_by: data[blocked_by]
     }
   });
 }

@@ -23,16 +23,26 @@ export const urls = {
 export const params = {
   token_request: 'JWT ',
   token_response: 'token',
+
   detail: 'detail',
   signature_expired: 'Signature has expired.',
   non_field_errors: 'non_field_errors',
+
+  user: 'user',
   username: 'username',
   password: 'password',
   first_name: 'first_name',
   last_name: 'last_name',
   email: 'email',
-  user: 'user',
+
+  gender: 'gender',
+  bio: 'bio',
+  birth_date: 'birth_date',
+  profile_picture: 'profile_picture',
   followings: 'followings',
   followers: 'followers',
+  blocked: 'blocked',
+  blocked_by: 'blocked_by',
+
   id: 'id'
 }
