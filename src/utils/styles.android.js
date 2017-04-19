@@ -1,4 +1,4 @@
-import { HEADER_HEIGHT } from './constants'; // eslint-disable-line 
+import { HEADER_HEIGHT } from './constants'; // eslint-disable-line
 
 const colors = {
   THEME_RED: '#CD0034',
@@ -16,6 +16,12 @@ const sharedStyles = {
     textAlign: 'center',
     fontSize: 16,
     fontFamily: 'sans-serif-medium',
+  },
+  simpleFontStyle: {
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontSize: 16,
+    fontFamily: 'sans-serif-small',
   },
   smallFontStyle: {
     justifyContent: 'center',

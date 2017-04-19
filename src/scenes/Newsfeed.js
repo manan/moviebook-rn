@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text, FlatList } from 'react-native';
-import { sharedStyles, HEADER_HEIGHT } from '../utils/';
+import { FlatList } from 'react-native';
+import { HEADER_HEIGHT } from '../utils/';
+import { Post } from '../components';
 
 class Newsfeed extends Component {
   render() {
@@ -9,7 +10,7 @@ class Newsfeed extends Component {
       <FlatList
         style={{ marginTop: HEADER_HEIGHT }}
         data={this.props.newsfeed}
-        renderItem={({ item }) => <Text style={sharedStyles.fontStyle}>{item.movie_title}</Text>}
+        renderItem={({ item }) => <Post post={item} />}
       />
     )
   }

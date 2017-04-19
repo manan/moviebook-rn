@@ -17,6 +17,12 @@ const sharedStyles = {
     fontSize: 16,
     fontFamily: 'Arial Rounded MT Bold',
   },
+  simpleFontStyle: {
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontSize: 16,
+    fontFamily: 'ArialMT',
+  },
   smallFontStyle: {
     justifyContent: 'center',
     textAlign: 'center',
