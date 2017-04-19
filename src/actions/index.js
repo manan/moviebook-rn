@@ -157,7 +157,6 @@ const getData = (dispatch, requestFunc, storeFunc, credentials) => {
   const { username, password, token } = credentials;
   requestFunc({ token })
   .then(response => {
-    console.log(response)
     if (response.ok) {
       response.json()
       .then(data => {
@@ -173,7 +172,7 @@ const getData = (dispatch, requestFunc, storeFunc, credentials) => {
             const { token_response } = params;
             dispatch({ type: RESET_TOKEN, payload: tokendata[token_response] });
             requestFunc({ token: tokendata[token_response] })
-            .then(userresponse => { console.log(userresponse); userresponse.json(); })
+            .then(userresponse => userresponse.json())
             .then(userdata => {
               storeFunc(dispatch, userdata);
             })

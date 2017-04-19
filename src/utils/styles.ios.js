@@ -1,3 +1,5 @@
+import { HEADER_HEIGHT } from './constants'; // eslint-disable-line
+
 const colors = {
   THEME_RED: '#CD0034',
   THEME_RED_LIGHT: '#D15776',
@@ -31,6 +33,12 @@ const sharedStyles = {
     fontFamily: 'Arial Rounded MT Bold',
     paddingTop: 5,
     paddingBottom: 5,
+  },
+  bodyStyle: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: colors.WHITE,
+    marginTop: HEADER_HEIGHT
   }
 }
 

@@ -1,19 +1,11 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { colors } from '../utils';
+import { View } from 'react-native';
+import { sharedStyles } from '../utils';
 
 const Body = ({ children }) => (
-  <View style={styles.containerStyle}>
+  <View style={sharedStyles.bodyStyle}>
     { children }
   </View>
 );
-
-const styles = StyleSheet.create({
-  containerStyle: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: colors.WHITE
-  }
-});
 
 export { Body };
