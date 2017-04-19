@@ -6,20 +6,18 @@ import {
   TouchableWithoutFeedback,
   TouchableOpacity,
   Alert,
-  Image,
   ActivityIndicator,
   Keyboard,
   StyleSheet,
 } from 'react-native';
 
 import {
-  images,
   colors,
   sharedStyles,
   BUTTON_HEIGHT,
   MIN_PASSWORD_LENGTH
 } from '../utils/';
-import { Header, Body, Button, Input, Section } from '../components/';
+import { Body, Button, Input, Section } from '../components/';
 import { loginUser, clearAuth } from '../actions';
 
 
@@ -113,10 +111,6 @@ class LoginScreen extends Component {
     return (
       <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
         <View style={{ flex: 1 }}>
-          <Header>
-            <Image style={{ flex: 1, resizeMode: 'contain' }} source={images.logo} />
-          </Header>
-
           <Body>
             <Section style={[sideMargins, { marginTop: 40 }]}>
               <Input

@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
   containerStyle: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: colors.WHITE
+    backgroundColor: colors.WHITE,
+    marginTop: 65
   }
 });
 
