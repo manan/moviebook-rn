@@ -22,9 +22,11 @@ class Newsfeed extends Component {
 }
 
 const mapStateToProps = store => {
-  return {
-    newsfeed: store.posts.newsfeed
+  const newsfeed = []
+  for (const p of store.posts.newsfeed) {
+    newsfeed.push({ ...p, key: p.id })
   }
+  return { newsfeed }
 }
 
 export default connect(mapStateToProps, {})(Newsfeed);
