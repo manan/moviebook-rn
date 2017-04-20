@@ -44,7 +44,7 @@ const sharedStyles = {
     flex: 1,
     alignItems: 'center',
     backgroundColor: colors.WHITE,
-    marginTop: HEADER_HEIGHT
+    marginTop: 0
   }
 }
 

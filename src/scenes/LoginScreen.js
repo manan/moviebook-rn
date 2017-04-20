@@ -17,7 +17,7 @@ import {
   BUTTON_HEIGHT,
   MIN_PASSWORD_LENGTH
 } from '../utils/';
-import { Body, Button, Input, Section } from '../components/';
+import { Body, Button, Input, Section, Header } from '../components/';
 import { loginUser, clearAuth } from '../actions';
 
 
@@ -111,6 +111,7 @@ class LoginScreen extends Component {
     return (
       <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
         <View style={{ flex: 1 }}>
+          <Header />
           <Body>
             <Section style={[sideMargins, { marginTop: 40 }]}>
               <Input

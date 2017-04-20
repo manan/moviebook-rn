@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FlatList } from 'react-native';
-import { HEADER_HEIGHT } from '../utils/';
-import { Post } from '../components';
+import { View, FlatList } from 'react-native';
+import { Post, Section, Header, Body } from '../components';
 
 class Newsfeed extends Component {
   render() {
     return (
-      <FlatList
-        style={{ marginTop: HEADER_HEIGHT }}
-        data={this.props.newsfeed}
-        renderItem={({ item }) => <Post post={item} />}
-      />
+      <View style={{ flex: 1 }}>
+        <Header />
+        <Body>
+          <Section>
+            <FlatList
+              data={this.props.newsfeed}
+              renderItem={({ item }) => <Post post={item} />}
+            />
+          </Section>
+        </Body>
+      </View>
     )
   }
 }
