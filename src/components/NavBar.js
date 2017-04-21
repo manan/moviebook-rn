@@ -1,5 +1,5 @@
 import React from 'react';
-//import { Actions } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 import {
   View,
   StyleSheet,
@@ -12,7 +12,7 @@ const NavBar = () => {
   const { navBarStyle, touchableStyle } = styles;
   return (
     <View style={navBarStyle}>
-      <TouchableOpacity style={touchableStyle}>
+      <TouchableOpacity style={touchableStyle} onPress={() => Actions.homeScreen()}>
         <Image style={{ width: 20, height: 20 }} source={images.home} />
       </TouchableOpacity>
 
@@ -28,7 +28,7 @@ const NavBar = () => {
         <Image style={{ width: 20, height: 20 }} source={images.notifications} />
       </TouchableOpacity>
 
-      <TouchableOpacity style={touchableStyle}>
+      <TouchableOpacity style={touchableStyle} onPress={() => Actions.profileScreen()}>
         <Image style={{ width: 20, height: 20 }} source={images.man_user} />
       </TouchableOpacity>
     </View>

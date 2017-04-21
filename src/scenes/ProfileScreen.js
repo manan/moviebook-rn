@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { View } from 'react-native';
 import { Header, Body, Profile } from '../components';
 
-class UserProfile extends Component {
+class ProfileScreen extends Component {
     render() {
       return (
         <View style={{ flex: 1 }} >
@@ -16,4 +16,4 @@ class UserProfile extends Component {
     }
 }
 
-export default connect()(UserProfile)
+export default connect()(ProfileScreen)

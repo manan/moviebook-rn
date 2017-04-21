@@ -2,7 +2,7 @@ import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 import LoginScreen from './scenes/LoginScreen';
 import HomeScreen from './scenes/HomeScreen';
-import UserProfile from './scenes/UserProfile';
+import ProfileScreen from './scenes/ProfileScreen';
 import { NavBar } from './components';
 
 const RouterComponent = () => {
@@ -17,7 +17,7 @@ const RouterComponent = () => {
         navBar={NavBar}
       >
         <Scene key="homeScreen" component={HomeScreen} initial />
-        <Scene key="userProfile" component={UserProfile} />
+        <Scene key="profileScreen" component={ProfileScreen} />
       </Scene>
     </Router>
   );
