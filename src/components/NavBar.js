@@ -12,7 +12,10 @@ const NavBar = () => {
   const { navBarStyle, touchableStyle } = styles;
   return (
     <View style={navBarStyle}>
-      <TouchableOpacity style={touchableStyle} onPress={() => Actions.homeScreen()}>
+      <TouchableOpacity
+        style={touchableStyle}
+        onPress={() => Actions.homeScreen()}
+      >
         <Image style={{ width: 20, height: 20 }} source={images.home} />
       </TouchableOpacity>
 
@@ -24,11 +27,17 @@ const NavBar = () => {
         <Image style={{ width: 25, height: 25 }} source={images.add} />
       </TouchableOpacity>
 
-      <TouchableOpacity style={touchableStyle}>
+      <TouchableOpacity
+        style={touchableStyle}
+        onPress={() => Actions.searchScreen()}
+      >
         <Image style={{ width: 20, height: 20 }} source={images.notifications} />
       </TouchableOpacity>
 
-      <TouchableOpacity style={touchableStyle} onPress={() => Actions.profileScreen()}>
+      <TouchableOpacity
+        style={touchableStyle}
+        onPress={() => Actions.profileScreen()}
+      >
         <Image style={{ width: 20, height: 20 }} source={images.man_user} />
       </TouchableOpacity>
     </View>
