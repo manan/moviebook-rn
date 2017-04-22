@@ -1,4 +1,3 @@
-import { Actions } from 'react-native-router-flux';
 import { urls, params } from '../utils';
 import {
   LOGIN_USER_SUCCESS,
@@ -32,7 +31,7 @@ export const loginUser = ({ username, password }) => {
 }
 
 export const logout = () => {
-  Actions.auth();
+  //Actions.auth();
   return { type: LOG_OUT }
 }
 
@@ -48,7 +47,7 @@ const loginUserSuccess = (dispatch, credentials) => {
   dispatch({ type: LOGIN_USER_SUCCESS, payload: token });
   getProfileDetails(dispatch, { username, password, token });
   getNewsfeed(dispatch, { username, password, token });
-  Actions.home();
+  //Actions.home();
 };
 
 const loginUserFail = (dispatch, errors) => {
