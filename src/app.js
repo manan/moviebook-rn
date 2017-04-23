@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
-import { TabNavigator } from 'react-navigation';
+import { TabNavigator, DrawerNavigator } from 'react-navigation';
 import reducers from './reducers';
 import { colors } from './utils';
 import LoginScreen from './scenes/LoginScreen';
@@ -28,7 +28,7 @@ const App = () => {
     Main: mainFlow
   }
 
-  const Navigator = TabNavigator(appFlow, { navigationOptions: { tabBar: { visible: false } } })
+  const Navigator = DrawerNavigator(appFlow, { navigationOptions: { tabBar: { visible: false } } })
 
   return (
     <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
