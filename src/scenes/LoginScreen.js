@@ -24,11 +24,21 @@ import { loginUser, clearAuth } from '../actions';
 class LoginScreen extends Component {
   state = { username: '', password: '', loading: false, buttonDisabled: true }
 
+  componentWillReceiveProps(nextProps) {
+    this.onAuthComplete(nextProps);
+  }
+  
   componentDidUpdate() {
     this.setButtonState();
     this.setLoadingState();
     if (this.props.errors !== '') {
       this.showAlert();
+    }
+  }
+
+  onAuthComplete(props) {
+    if (props.token) {
+      this.props.navigation.navigate('Home')
     }
   }
 

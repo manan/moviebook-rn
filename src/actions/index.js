@@ -31,7 +31,6 @@ export const loginUser = ({ username, password }) => {
 }
 
 export const logout = () => {
-  //Actions.auth();
   return { type: LOG_OUT }
 }
 
@@ -47,7 +46,6 @@ const loginUserSuccess = (dispatch, credentials) => {
   dispatch({ type: LOGIN_USER_SUCCESS, payload: token });
   getProfileDetails(dispatch, { username, password, token });
   getNewsfeed(dispatch, { username, password, token });
-  //Actions.home();
 };
 
 const loginUserFail = (dispatch, errors) => {

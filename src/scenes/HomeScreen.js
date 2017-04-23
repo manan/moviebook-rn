@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { Image, View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Section, Header, Body, Feed } from '../components';
+import { images } from '../utils';
 
 class HomeScreen extends Component {
+  static navigationOptions = {
+    tabBar: {
+      icon: ({ tintColor }) => (
+        <Image
+          source={images.home}
+          style={[styles.icon, { tintColor }]}
+        />
+      )
+    }
+  };
+
   render() {
-    console.log(Feed);
     return (
       <View style={{ flex: 1 }}>
         <Header />
@@ -18,6 +29,14 @@ class HomeScreen extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  icon: {
+    width: 25,
+    height: 25,
+  },
+});
+
 const mapStateToProps = store => {
   const newfeed = []
   for (const p of store.posts.newsfeed) {

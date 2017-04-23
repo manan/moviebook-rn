@@ -4,12 +4,12 @@ import { Image, Text, StyleSheet } from 'react-native';
 import { Page, Section } from '../components';
 import { images, sharedStyles } from '../utils';
 
-class SearchScreen extends Component {
+class NotificationScreen extends Component {
   static navigationOptions = {
     tabBar: {
       icon: ({ tintColor }) => (
         <Image
-          source={images.search}
+          source={images.notifications}
           style={[styles.icon, { tintColor }]}
         />
       )
@@ -20,13 +20,13 @@ class SearchScreen extends Component {
     return (
       <Page>
         <Section style={styles.sectionStyle}>
-          <Text
+          <Text 
             style={[
               sharedStyles.smallFontStyle,
               { fontSize: 20, fontFamily: 'Arial Rounded MT Bold' }
             ]}
           >
-            {'Search not yet implemented (expect by end of April)'}
+            {'Notifications not yet implemented (expect by mid-May)'}
           </Text>
         </Section>
       </Page>
@@ -45,8 +45,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: 25,
-    marginRight: 25
+    marginRight: 25,
   }
 });
 
-export default connect()(SearchScreen)
+export default connect()(NotificationScreen)
