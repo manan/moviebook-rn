@@ -17,9 +17,12 @@ class ProfileScreen extends Component {
   };
 
   render() {
+    const { first_name, last_name, username, friends, bio, profile_picture, my_feed } = this.props;
     return (
       <Page>
-        <Profile profile={{}} />
+        <Profile
+        profile={{ first_name, last_name, username, friends, bio, profile_picture, my_feed }}
+        />
       </Page>
     )
   }
@@ -32,4 +35,16 @@ const styles = StyleSheet.create({
   },
 });
 
-export default connect()(ProfileScreen)
+const mapStateToProps = store => {
+  return {
+    friends: store.friends,
+    bio: store.profile.bio,
+    profile_picture: store.profile.profile_picture,
+    username: store.auth.username,
+    first_name: store.auth.first_name,
+    last_name: store.auth.last_name,
+    my_feed: store.posts.my_feed
+  }
+}
+
+export default connect(mapStateToProps)(ProfileScreen)

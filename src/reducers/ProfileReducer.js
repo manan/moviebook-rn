@@ -7,7 +7,7 @@ const INITIAL_STATE = {
   bio: '',
   birth_date: '',
   gender: '',
-  profile_picture: ''
+  profile_picture: 'https://s3.ca-central-1.amazonaws.com/moviebook/default-5.jpg'
 }
 
 export default (state = INITIAL_STATE, action) => {

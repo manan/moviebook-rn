@@ -162,7 +162,6 @@ const getData = (dispatch, requestFunc, storeFunc, credentials) => {
     } else if (response.status === 401) {
       requestToken({ username, password })
       .then(tokenresponse => {
-        console.log(response)
         if (tokenresponse.ok) {
           tokenresponse.json()
           .then(tokendata => {

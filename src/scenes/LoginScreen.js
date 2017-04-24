@@ -118,7 +118,6 @@ class LoginScreen extends Component {
     const { smallFontStyle } = sharedStyles;
     const { sideMargins } = styles;
     const { username, password } = this.state;
-    console.log('render called')
     return (
       <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
         <View style={{ flex: 1 }}>
