@@ -10,8 +10,7 @@ class Post extends Component {
 
   componentDidMount() {
     ReactNative.Image.getSize(this.props.post.poster_url, (srcWidth, srcHeight) => {
-      // const maxHeight = Dimensions.get('window').height; // or something else
-      const maxHeight = 250; // or something else
+      const maxHeight = 400; // or something else
       const maxWidth = Dimensions.get('window').width;
 
       const ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
@@ -46,9 +45,9 @@ class Post extends Component {
           </View>
         </Section>
 
-        <Section style={{ paddingTop: 5, paddingBottom: 10 }}>
+        <Section style={{ justifyContent: 'center', paddingTop: 5, paddingBottom: 10 }}>
           <Image
-            style={{ flex: 1, width: this.state.width, height: this.state.height - 200 }}
+            style={{ width: this.state.width, height: this.state.height }}
             indicator={ProgressBar}
             source={{ uri: poster_url }}
             defaultSource={grey}
