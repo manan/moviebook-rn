@@ -22,23 +22,25 @@ class Post extends Component {
 
 
   render() {
-    const { post } = this.props;
+    const { profile_picture, username, movie_title, poster_url } = this.props.post;
+    const { sideMargins, imageStyle, viewStyle } = styles;
+    const { smallFontStyle, simpleFontStyle } = sharedStyles;
+    const { avatar, grey } = images;
+
     return (
       <View style={{ flex: 1, paddingTop: 5, paddingBottom: 5 }}>
-        <Section style={styles.sideMargins}>
+        <Section style={sideMargins}>
           <Image
-            style={{ width: 30, height: 30, borderRadius: 15 }}
-            source={{ uri: post.profile_picture }}
-            defaultSource={images.avatar}
+            style={imageStyle}
+            source={{ uri: profile_picture }}
+            defaultSource={avatar}
           />
-          <View
-            style={{ justifyContent: 'space-between', alignItems: 'flex-start', paddingLeft: 15 }}
-          >
-            <Text style={sharedStyles.simpleFontStyle} numberOfLines={1}>
-              {post.username}
+          <View style={viewStyle} >
+            <Text style={simpleFontStyle} numberOfLines={1}>
+              {username}
             </Text>
-            <Text style={sharedStyles.smallFontStyle} numberOfLines={1}>
-              {post.movie_title}
+            <Text style={smallFontStyle} numberOfLines={1}>
+              {movie_title}
             </Text>
           </View>
         </Section>
@@ -47,8 +49,8 @@ class Post extends Component {
           <Image
             style={{ flex: 1, width: this.state.width, height: this.state.height }}
             indicator={ProgressBar}
-            source={{ uri: post.poster_url }}
-            defaultSource={images.grey}
+            source={{ uri: poster_url }}
+            defaultSource={grey}
           />
         </Section>
       </View>
@@ -60,7 +62,17 @@ const styles = StyleSheet.create({
   sideMargins: {
     marginLeft: 15,
     marginTop: 5,
-  }
+  },
+  imageStyle: {
+    width: 30,
+    height: 30,
+    borderRadius: 15
+  },
+  viewStyle: {
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    paddingLeft: 15
+   }
 });
 
 export { Post };

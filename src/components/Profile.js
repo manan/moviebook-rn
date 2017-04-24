@@ -1,61 +1,102 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions } from 'react-native';
 import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar'; // eslint-disable-line
 import { sharedStyles, images } from '../utils/';
 import { Section, Button } from '../components';
 
-const Profile = ({ profile }) => {
-  const { first_name, last_name, username, friends, bio, profile_picture, my_feed } = profile
-  const { avatar } = images
-  const { imageStyle, containerStyle, sectionOverride, outerSectionOverride, blockStyle } = styles;
-  const { fontStyle, smallFontStyle, buttonTextStyle } = sharedStyles;
+class Profile extends Component {
 
-  const getWidth = () => Dimensions.get('window').width - 10 // -10 for 5 units margin each side
+  getWidth() {
+    return Dimensions.get('window').width - 10 // -10 for 5 units margin each side
+  }
 
-  return (
-    <View style={[containerStyle, { width: getWidth() }]} >
-      <Section style={[outerSectionOverride, { width: getWidth() }]} >
-        <Section style={[sectionOverride, { width: getWidth() }]} >
-          <Image style={imageStyle} source={{ uri: profile_picture }} defaultSource={avatar} />
-          <Section style={{ flex: 1, flexDirection: 'column', marginLeft: 30, marginRight: 30 }}>
-            <Section style={{ flex: 2 }}>
-              <Section style={blockStyle}>
-                <Text style={[fontStyle, { fontSize: 18 }]} >
-                  {my_feed.length}
-                </Text>
+  render() {
+    const {
+      first_name,
+      last_name,
+      friends,
+      bio,
+      profile_picture,
+      my_feed
+    } = this.props.profile
+    const { avatar } = images
+    const {
+      imageStyle,
+      containerStyle,
+      sectionOverride,
+      outerSectionOverride,
+      blockStyle
+    } = styles;
+    const {
+      simpleFontStyle,
+      smallFontStyle,
+      buttonTextStyle
+    } = sharedStyles;
+
+    return (
+      <View style={[containerStyle, { width: this.getWidth() }]} >
+
+        <Section style={[outerSectionOverride, { width: this.getWidth() }]} >
+
+          <Section style={[sectionOverride, { width: this.getWidth() }]} >
+            <Image style={imageStyle} source={{ uri: profile_picture }} defaultSource={avatar} />
+            <Section style={{ flex: 1, flexDirection: 'column', marginLeft: 30, marginRight: 30 }}>
+
+              <Section style={{ flex: 2 }}>
+                <Section style={blockStyle}>
+                  <Text style={[simpleFontStyle, { fontSize: 18 }]} >
+                    {my_feed.length}
+                  </Text>
+                  <Text style={smallFontStyle}>
+                    posts
+                  </Text>
+                </Section>
+
+                <Section style={blockStyle}>
+                  <Text style={[simpleFontStyle, { fontSize: 18 }]}>
+                    {friends.followers.length}
+                  </Text>
+                  <Text style={smallFontStyle}>
+                    followers
+                  </Text>
+                </Section>
+
+                <Section style={blockStyle}>
+                  <Text style={[simpleFontStyle, { fontSize: 18 }]} >
+                    {friends.followings.length}
+                  </Text>
+                  <Text style={smallFontStyle}>
+                    followings
+                  </Text>
+                </Section>
               </Section>
-              <Section style={blockStyle}>
-                <Text style={[fontStyle, { fontSize: 18 }]}>
-                  {friends.followers.length}
-                </Text>
+
+              <Section style={{ flex: 1 }}>
+                <Button style={{ flex: 1 }}>
+                  <Text style={[buttonTextStyle, { fontSize: 13 }]}>
+                    Edit Profile
+                  </Text>
+                </Button>
               </Section>
-              <Section style={blockStyle}>
-                <Text style={[fontStyle, { fontSize: 18 }]} >
-                  {friends.followings.length}
-                </Text>
-              </Section>
+
             </Section>
 
-            <Section style={{ flex: 1 }}>
-              <Button style={{ flex: 1 }}>
-                <Text style={[buttonTextStyle, { fontSize: 13 }]}>
-                  Edit Profile
-                </Text>
-              </Button>
-            </Section>
           </Section>
-        </Section>
-        <Text style={[fontStyle, { paddingTop: 10 }]}>
-          {`${first_name} ${last_name}`}
-        </Text>
+          <Text style={[simpleFontStyle, { paddingTop: 10 }]}>
+            {`${first_name} ${last_name}`}
+          </Text>
 
-        <Text style={smallFontStyle}>
-          {bio}
-        </Text>
-      </Section>
-    </View>
-  )
+          <Text style={smallFontStyle}>
+            {bio}
+          </Text>
+        </Section>
+
+        <View style={{ height: 2, width: }}>
+        </View>
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
