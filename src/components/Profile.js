@@ -3,12 +3,16 @@ import { Text, View, StyleSheet, Dimensions } from 'react-native';
 import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar'; // eslint-disable-line
 import { sharedStyles, images } from '../utils/';
-import { Section, Button } from '../components';
+import { Section, Button, Feed } from '../components';
 
 class Profile extends Component {
 
   getWidth() {
-    return Dimensions.get('window').width - 10 // -10 for 5 units margin each side
+    return Dimensions.get('window').width
+  }
+
+  getHeight() {
+    return Dimensions.get('window').height
   }
 
   render() {
@@ -92,8 +96,10 @@ class Profile extends Component {
           </Text>
         </Section>
 
-        <View style={{ height: 2, width: }}>
-        </View>
+        <View style={{ height: 1, width: this.getWidth(), backgroundColor: '#CDCDCD' }} />
+        <Section style={{ flex: 1 }}>
+          <Feed posts={my_feed} />
+        </Section>
       </View>
     )
   }
@@ -110,9 +116,9 @@ const styles = StyleSheet.create({
     flex: 1
   },
   containerStyle: {
-    flexDirection: 'row',
+    flex: 1,
+    flexDirection: 'column',
     alignSelf: 'flex-start',
-    margin: 10,
   },
   imageStyle: {
     width: 80,
@@ -123,6 +129,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
+    margin: 10,
   }
 });
 
