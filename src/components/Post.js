@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactNative, { Text, View, StyleSheet, Dimensions } from 'react-native';
 import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar'; // eslint-disable-line
-import { sharedStyles, images } from '../utils';
+import { sharedStyles, images, POST_HEIGHT } from '../utils';
 import { Section } from '../components';
 
 class Post extends Component {
@@ -10,7 +10,7 @@ class Post extends Component {
 
   componentDidMount() {
     ReactNative.Image.getSize(this.props.post.poster_url, (srcWidth, srcHeight) => {
-      const maxHeight = 400; // or something else
+      const maxHeight = POST_HEIGHT;
       const maxWidth = Dimensions.get('window').width;
 
       const ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
