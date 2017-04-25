@@ -6,5 +6,4 @@ export * from './Input';
 export * from './Post';
 export * from './Feed';
 export * from './Profile';
-export * from './NavBar';
 export * from './Page';
