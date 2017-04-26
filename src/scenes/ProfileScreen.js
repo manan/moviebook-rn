@@ -16,8 +16,26 @@ class ProfileScreen extends Component {
     }
   };
 
+  static navigationOptionsVersion = {
+    tabBarIcon: ({ tintColor }) => (
+        <Image
+          source={images.man_user}
+          style={[styles.icon, { tintColor }]}
+        />
+      )
+  };
+
   render() {
-    const { first_name, last_name, username, friends, bio, profile_picture, my_feed } = this.props;
+    const {
+      first_name,
+      last_name,
+      username,
+      friends,
+      bio,
+      profile_picture,
+      my_feed
+    } = this.props;
+
     return (
       <Page>
         <Profile

@@ -16,6 +16,15 @@ class HomeScreen extends Component {
     }
   };
 
+  static navigationOptionsVersion = {
+    tabBarIcon: ({ tintColor }) => (
+        <Image
+          source={images.home}
+          style={[styles.icon, { tintColor }]}
+        />
+      )
+  };
+
   render() {
     return (
       <View style={{ flex: 1 }}>

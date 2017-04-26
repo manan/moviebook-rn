@@ -16,6 +16,15 @@ class SearchScreen extends Component {
     }
   };
 
+  static navigationOptionsVersion = {
+    tabBarIcon: ({ tintColor }) => (
+        <Image
+          source={images.search}
+          style={[styles.icon, { tintColor }]}
+        />
+      )
+  };
+
   render() {
     return (
       <Page>

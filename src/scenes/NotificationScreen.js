@@ -16,11 +16,20 @@ class NotificationScreen extends Component {
     }
   };
 
+  static navigationOptionsVersion = {
+    tabBarIcon: ({ tintColor }) => (
+        <Image
+          source={images.notifications}
+          style={[styles.icon, { tintColor }]}
+        />
+      )
+  };
+
   render() {
     return (
       <Page>
         <Section style={styles.sectionStyle}>
-          <Text 
+          <Text
             style={[
               sharedStyles.smallFontStyle,
               { fontSize: 20, fontFamily: 'Arial Rounded MT Bold' }

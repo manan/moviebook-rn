@@ -28,7 +28,10 @@ const App = () => {
     Main: mainFlow
   }
 
-  const Navigator = DrawerNavigator(appFlow, { navigationOptions: { tabBar: { visible: false } } })
+  const Navigator = DrawerNavigator(appFlow, { navigationOptions: {
+    lockMode: 'locked-closed',
+    tabBarVisible: false
+  } })
 
   return (
     <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
