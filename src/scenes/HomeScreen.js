@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Image, View, StyleSheet } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { Section, Header, Body, Feed } from '../components';
+import { Section, Page, Feed } from '../components';
 import { images } from '../utils';
 
 class HomeScreen extends Component {
@@ -27,14 +27,11 @@ class HomeScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <Header />
-        <Body>
-          <Section>
-            <Feed posts={this.props.newsfeed} />
-          </Section>
-        </Body>
-      </View>
+      <Page>
+        <Section>
+          <Feed posts={this.props.newsfeed} />
+        </Section>
+      </Page>
     )
   }
 }
@@ -47,11 +44,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = store => {
-  const newfeed = []
+  const newsfeed = []
   for (const p of store.posts.newsfeed) {
-    newfeed.push({ ...p, key: p.id })
+    newsfeed.push({ ...p, key: p.id })
   }
-  return { newsfeed: newfeed, friends: store.friends }
+  return { newsfeed, friends: store.friends }
 }
 
 export default connect(mapStateToProps, {})(HomeScreen);

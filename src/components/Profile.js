@@ -17,6 +17,7 @@ class Profile extends Component {
 
   render() {
     const {
+      id,
       first_name,
       last_name,
       friends,
@@ -28,7 +29,6 @@ class Profile extends Component {
     const {
       imageStyle,
       containerStyle,
-      sectionOverride,
       outerSectionOverride,
       blockStyle
     } = styles;
@@ -37,16 +37,16 @@ class Profile extends Component {
       smallFontStyle,
       buttonTextStyle
     } = sharedStyles;
-
+    console.log(id)
     return (
       <View style={[containerStyle, { width: this.getWidth() }]} >
 
         <Section style={[outerSectionOverride, { width: this.getWidth() }]} >
 
-          <Section style={[sectionOverride, { width: this.getWidth() }]} >
+          <Section style={{ justifyContent: 'space-between', width: this.getWidth() }} >
             <Image style={imageStyle} source={{ uri: profile_picture }} defaultSource={avatar} />
-            <Section style={{ flex: 1, flexDirection: 'column', marginLeft: 30, marginRight: 30 }}>
 
+            <Section style={{ flex: 1, flexDirection: 'column', marginLeft: 30, marginRight: 30 }}>
               <Section style={{ flex: 2 }}>
                 <Section style={blockStyle}>
                   <Text style={[simpleFontStyle, { fontSize: 18 }]} >
@@ -83,10 +83,10 @@ class Profile extends Component {
                   </Text>
                 </Button>
               </Section>
-
             </Section>
 
           </Section>
+
           <Text style={[simpleFontStyle, { paddingTop: 10 }]}>
             {`${first_name} ${last_name}`}
           </Text>
@@ -94,6 +94,7 @@ class Profile extends Component {
           <Text style={smallFontStyle}>
             {bio}
           </Text>
+
         </Section>
 
         <View style={{ height: 1, width: this.getWidth(), backgroundColor: '#CDCDCD' }} />
@@ -106,19 +107,16 @@ class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
-  sectionOverride: {
-    justifyContent: 'space-between',
+  containerStyle: {
+    flex: 1,
+    flexDirection: 'column',
+    alignSelf: 'flex-start',
   },
   blockStyle: {
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
     flex: 1
-  },
-  containerStyle: {
-    flex: 1,
-    flexDirection: 'column',
-    alignSelf: 'flex-start',
   },
   imageStyle: {
     width: 80,

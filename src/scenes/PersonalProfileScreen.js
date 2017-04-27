@@ -27,6 +27,7 @@ class PersonalProfileScreen extends Component {
 
   render() {
     const {
+      id,
       first_name,
       last_name,
       username,
@@ -39,7 +40,7 @@ class PersonalProfileScreen extends Component {
     return (
       <Page>
         <Profile
-        profile={{ first_name, last_name, username, friends, bio, profile_picture, my_feed }}
+          profile={{ id, first_name, last_name, username, friends, bio, profile_picture, my_feed }}
         />
       </Page>
     )
@@ -54,20 +55,16 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = store => {
+  const { friends, profile, posts, auth } = store
+  const { bio, profile_picture } = profile
+  const { id, username, first_name, last_name } = auth
+
   const my_feed = []
-  for (const p of store.posts.my_feed) {
-    my_feed.push({ ...p, key: p.id })
+  for (const post of posts.my_feed) {
+    my_feed.push({ ...post, key: post.id })
   }
 
-  return {
-    friends: store.friends,
-    bio: store.profile.bio,
-    profile_picture: store.profile.profile_picture,
-    username: store.auth.username,
-    first_name: store.auth.first_name,
-    last_name: store.auth.last_name,
-    my_feed
-  }
+  return { id, friends, bio, profile_picture, username, first_name, last_name, my_feed }
 }
 
 export default connect(mapStateToProps)(PersonalProfileScreen)
