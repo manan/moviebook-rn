@@ -5,7 +5,7 @@ import { Page, Section } from '../components';
 import { images, sharedStyles } from '../utils';
 
 class SearchScreen extends Component {
-  static navigationOptions = {
+  static navigationOptionsOld = {
     tabBar: {
       icon: ({ tintColor }) => (
         <Image
@@ -16,7 +16,7 @@ class SearchScreen extends Component {
     }
   };
 
-  static navigationOptionsVersion = {
+  static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
         <Image
           source={images.search}

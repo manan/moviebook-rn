@@ -9,14 +9,14 @@ import LoginScreen from './scenes/LoginScreen';
 import HomeScreen from './scenes/HomeScreen';
 import SearchScreen from './scenes/SearchScreen';
 import NotificationScreen from './scenes/NotificationScreen';
-import ProfileScreen from './scenes/ProfileScreen';
+import PersonalProfileScreen from './scenes/PersonalProfileScreen';
 
 const App = () => {
   const mainScreens = {
     Home: { screen: HomeScreen },
     Search: { screen: SearchScreen },
     Notifications: { screen: NotificationScreen },
-    Profile: { screen: ProfileScreen }
+    Profile: { screen: PersonalProfileScreen }
   }
 
   const mainFlow = {
@@ -31,7 +31,8 @@ const App = () => {
   const Navigator = DrawerNavigator(appFlow, { navigationOptions: {
     lockMode: 'locked-closed',
     tabBarVisible: false
-  } })
+  }
+})
 
   return (
     <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>

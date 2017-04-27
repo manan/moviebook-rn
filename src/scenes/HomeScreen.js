@@ -5,7 +5,7 @@ import { Section, Header, Body, Feed } from '../components';
 import { images } from '../utils';
 
 class HomeScreen extends Component {
-  static navigationOptions = {
+  static navigationOptionsOld = {
     tabBar: {
       icon: ({ tintColor }) => (
         <Image
@@ -16,7 +16,7 @@ class HomeScreen extends Component {
     }
   };
 
-  static navigationOptionsVersion = {
+  static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
         <Image
           source={images.home}
@@ -51,7 +51,6 @@ const mapStateToProps = store => {
   for (const p of store.posts.newsfeed) {
     newfeed.push({ ...p, key: p.id })
   }
-
   return { newsfeed: newfeed, friends: store.friends }
 }
 
