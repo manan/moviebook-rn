@@ -6,6 +6,7 @@ const Feed = ({ posts }) => {
   return (
     <FlatList
       data={posts}
+      removeClippedSubviews={false}
       renderItem={({ item }) => <Post post={item} />}
     />
   )
