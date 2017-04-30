@@ -1,26 +1,16 @@
 import React, { Component } from 'react';
-import { Image, StyleSheet } from 'react-native';
+import { Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Section, Page, Feed } from '../components';
-import { images } from '../utils';
+import { images, sharedStyles } from '../utils';
 
 class HomeScreen extends Component {
-  static navigationOptionsOld = {
-    tabBar: {
-      icon: ({ tintColor }) => (
-        <Image
-          source={images.home}
-          style={[styles.icon, { tintColor }]}
-        />
-      )
-    }
-  };
-
+  
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
         <Image
           source={images.home}
-          style={[styles.icon, { tintColor }]}
+          style={[sharedStyles.tabBarIconStyle, { tintColor }]}
         />
       )
   };
@@ -36,19 +26,12 @@ class HomeScreen extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  icon: {
-    width: 25,
-    height: 25,
-  },
-});
-
 const mapStateToProps = store => {
   const newsfeed = []
-  for (const p of store.posts.newsfeed) {
-    newsfeed.push({ ...p, key: p.id })
+  for (const post of store.posts.newsfeed) {
+    newsfeed.push({ ...post, key: post.id })
   }
-  return { newsfeed, friends: store.friends }
+  return { newsfeed }
 }
 
-export default connect(mapStateToProps, {})(HomeScreen);
+export default connect(mapStateToProps)(HomeScreen);

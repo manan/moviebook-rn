@@ -44,6 +44,10 @@ const sharedStyles = {
     alignItems: 'center',
     backgroundColor: colors.WHITE,
     marginTop: 0
+  },
+  tabBarIconStyle: {
+    width: 25,
+    height: 25,
   }
 }
 

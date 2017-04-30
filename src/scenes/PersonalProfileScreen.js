@@ -1,26 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Image, StyleSheet } from 'react-native';
+import { Image } from 'react-native';
 import { Page, Profile } from '../components';
-import { images } from '../utils';
+import { images, sharedStyles } from '../utils';
 
 class PersonalProfileScreen extends Component {
-  static navigationOptionsOld = {
-    tabBar: {
-      icon: ({ tintColor }) => (
-        <Image
-          source={images.man_user}
-          style={[styles.icon, { tintColor }]}
-        />
-      )
-    }
-  };
 
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
         <Image
           source={images.man_user}
-          style={[styles.icon, { tintColor }]}
+          style={[sharedStyles.tabBarIconStyle, { tintColor }]}
         />
       )
   };
@@ -46,13 +36,6 @@ class PersonalProfileScreen extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  icon: {
-    width: 25,
-    height: 25,
-  },
-});
 
 const mapStateToProps = store => {
   const { friends, profile, posts, auth } = store

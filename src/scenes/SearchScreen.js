@@ -5,22 +5,12 @@ import { Page, Section } from '../components';
 import { images, sharedStyles } from '../utils';
 
 class SearchScreen extends Component {
-  static navigationOptionsOld = {
-    tabBar: {
-      icon: ({ tintColor }) => (
-        <Image
-          source={images.search}
-          style={[styles.icon, { tintColor }]}
-        />
-      )
-    }
-  };
-
+  
   static navigationOptions = {
     tabBarIcon: ({ tintColor }) => (
         <Image
           source={images.search}
-          style={[styles.icon, { tintColor }]}
+          style={[sharedStyles.tabBarIconStyle, { tintColor }]}
         />
       )
   };
@@ -44,10 +34,6 @@ class SearchScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  icon: {
-    width: 25,
-    height: 25,
-  },
   sectionStyle: {
     flex: 1,
     flexDirection: 'column',
