@@ -17,7 +17,6 @@ class Profile extends Component {
 
   render() {
     const {
-      id,
       first_name,
       last_name,
       friends,
@@ -37,7 +36,7 @@ class Profile extends Component {
       smallFontStyle,
       buttonTextStyle
     } = sharedStyles;
-    console.log(id)
+
     return (
       <View style={[containerStyle, { width: this.getWidth() }]} >
 

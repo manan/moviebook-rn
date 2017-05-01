@@ -26,7 +26,7 @@ class Post extends Component {
     const { sideMargins, imageStyle, viewStyle } = styles;
     const { smallFontStyle, simpleFontStyle } = sharedStyles;
     const { avatar, grey } = images;
-
+    
     return (
       <View style={{ flex: 1, paddingTop: 5, paddingBottom: 5 }}>
         <Section style={sideMargins}>

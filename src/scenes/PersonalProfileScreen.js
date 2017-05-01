@@ -30,7 +30,17 @@ class PersonalProfileScreen extends Component {
     return (
       <Page>
         <Profile
-          profile={{ id, first_name, last_name, username, friends, bio, profile_picture, my_feed }}
+          profile={{
+            id,
+            first_name,
+            last_name,
+            username,
+            friends,
+            bio,
+            profile_picture,
+            my_feed,
+            isSelf: true 
+          }}
         />
       </Page>
     )
