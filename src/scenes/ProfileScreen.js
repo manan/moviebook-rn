@@ -1,20 +1,8 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
 import { connect } from 'react-redux';
 import { Page, Profile } from '../components';
-import { sharedStyles, images } from '../utils';
 
 class ProfileScreen extends Component {
-
-  static navigationOptions = {
-    header: null,
-    tabBarIcon: ({ tintColor }) => (
-        <Image
-          source={images.home}
-          style={[sharedStyles.tabBarIconStyle, { tintColor }]}
-        />
-      )
-  };
 
   state = {
     id: -1,
@@ -28,7 +16,12 @@ class ProfileScreen extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => this.props.navigation.goBack(), 10000)
+    // if (this.props.id === 1) {
+    //   setTimeout(() => this.props.navigation.goBack(), 15000)
+    //   setTimeout(() => this.props.navigation.navigate('Profile', { id: 2 }), 5000)
+    // } else {
+    //   setTimeout(() => this.props.navigation.goBack(), 5000)
+    // }
   }
 
   getObjectWithDetails() {
