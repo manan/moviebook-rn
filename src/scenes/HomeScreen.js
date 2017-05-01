@@ -4,10 +4,6 @@ import { Section, Page, Feed } from '../components'
 
 class HomeScreen extends Component {
 
-  componentDidMount() {
-    // setTimeout(() => this.props.navigation.navigate('Profile', { id: 1 }), 5000)
-  }
-
   onProfilePress(username, id) {
     console.log(username)
     this.props.navigation.navigate('Profile', { id })
