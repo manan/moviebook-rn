@@ -5,8 +5,9 @@ import { Section, Page, Feed } from '../components';
 import { images, sharedStyles } from '../utils';
 
 class HomeScreen extends Component {
-  
+
   static navigationOptions = {
+    header: null,
     tabBarIcon: ({ tintColor }) => (
         <Image
           source={images.home}
