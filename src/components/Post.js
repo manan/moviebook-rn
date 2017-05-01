@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import ReactNative, { Text, View, StyleSheet, Dimensions } from 'react-native';
+import ReactNative, { Text, View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar'; // eslint-disable-line
 import { sharedStyles, images, POST_HEIGHT } from '../utils';
 import { Section } from '../components';
 
-class Post extends Component {
+class Post extends Component { // must pass post and onProfilePress props
   state = { width: 0, height: 0 }
 
   componentDidMount() {
@@ -22,11 +22,11 @@ class Post extends Component {
 
 
   render() {
-    const { profile_picture, username, movie_title, poster_url } = this.props.post;
+    const { owner, profile_picture, username, movie_title, poster_url } = this.props.post;
     const { sideMargins, imageStyle, viewStyle } = styles;
     const { smallFontStyle, simpleFontStyle } = sharedStyles;
     const { avatar, grey } = images;
-    
+
     return (
       <View style={{ flex: 1, paddingTop: 5, paddingBottom: 5 }}>
         <Section style={sideMargins}>
@@ -36,9 +36,11 @@ class Post extends Component {
             defaultSource={avatar}
           />
           <View style={viewStyle} >
-            <Text style={simpleFontStyle} numberOfLines={1}>
-              {username}
-            </Text>
+            <TouchableOpacity onPress={() => this.props.onProfilePress(username, owner)}>
+              <Text style={simpleFontStyle} numberOfLines={1}>
+                {username}
+              </Text>
+            </TouchableOpacity>
             <Text style={smallFontStyle} numberOfLines={1}>
               {movie_title}
             </Text>

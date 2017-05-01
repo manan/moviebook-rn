@@ -16,12 +16,12 @@ class ProfileScreen extends Component {
   }
 
   componentDidMount() {
-    // if (this.props.id === 1) {
-    //   setTimeout(() => this.props.navigation.goBack(), 15000)
-    //   setTimeout(() => this.props.navigation.navigate('Profile', { id: 2 }), 5000)
-    // } else {
-    //   setTimeout(() => this.props.navigation.goBack(), 5000)
-    // }
+    setTimeout(() => this.props.navigation.goBack(), 5000)
+  }
+
+  onProfilePress(username, id) {
+    console.log(username)
+    this.props.navigation.navigate('Profile', { id })
   }
 
   getObjectWithDetails() {
@@ -57,6 +57,7 @@ class ProfileScreen extends Component {
             my_feed,
             isSelf
           }}
+          onProfilePress={this.onProfilePress.bind(this)}
         />
       </Page>
     )

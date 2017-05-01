@@ -15,6 +15,11 @@ class PersonalProfileScreen extends Component {
       )
   };
 
+  onProfilePress(username, id) {
+    console.log(username)
+    console.log(id)
+  }
+
   render() {
     const {
       id,
@@ -39,8 +44,9 @@ class PersonalProfileScreen extends Component {
             bio,
             profile_picture,
             my_feed,
-            isSelf: true 
+            isSelf: true
           }}
+          onProfilePress={this.onProfilePress.bind(this)}
         />
       </Page>
     )

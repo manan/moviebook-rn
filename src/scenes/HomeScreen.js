@@ -5,14 +5,19 @@ import { Section, Page, Feed } from '../components'
 class HomeScreen extends Component {
 
   componentDidMount() {
-    setTimeout(() => this.props.navigation.navigate('Profile', { id: 1 }), 5000)
+    // setTimeout(() => this.props.navigation.navigate('Profile', { id: 1 }), 5000)
+  }
+
+  onProfilePress(username, id) {
+    console.log(username)
+    this.props.navigation.navigate('Profile', { id })
   }
 
   render() {
     return (
       <Page>
         <Section>
-          <Feed posts={this.props.newsfeed} />
+          <Feed posts={this.props.newsfeed} onProfilePress={this.onProfilePress.bind(this)} />
         </Section>
       </Page>
     )

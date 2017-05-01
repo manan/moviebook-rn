@@ -5,7 +5,7 @@ import ProgressBar from 'react-native-progress/Bar'; // eslint-disable-line
 import { sharedStyles, images } from '../utils/';
 import { Section, Button, Feed } from '../components';
 
-class Profile extends Component {
+class Profile extends Component { // must pass profile and onProfilePress props
 
   getWidth() {
     return Dimensions.get('window').width
@@ -98,7 +98,7 @@ class Profile extends Component {
 
         <View style={{ height: 1, width: this.getWidth(), backgroundColor: '#CDCDCD' }} />
         <Section style={{ flex: 1 }}>
-          <Feed posts={my_feed} />
+          <Feed posts={my_feed} onProfilePress={this.props.onProfilePress} />
         </Section>
       </View>
     )
