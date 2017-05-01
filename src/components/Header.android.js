@@ -1,13 +1,13 @@
 import React from 'react'
-import { View, Image, StatusBar, StyleSheet } from 'react-native'
-import { colors, images } from '../utils/'
+import { View, StatusBar, StyleSheet } from 'react-native'
+import { colors } from '../utils/'
 
-const Header = () => {
+const Header = ({ children }) => {
   return (
     <View>
       <StatusBar backgroundColor={colors.THEME_BLACK} barStyle="light-content" />
       <View style={styles.containerStyle}>
-        <Image style={{ flex: 1, resizeMode: 'contain' }} source={images.logo} />
+        {children}
       </View>
     </View>
   );
