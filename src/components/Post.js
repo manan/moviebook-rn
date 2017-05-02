@@ -5,10 +5,12 @@ import ProgressBar from 'react-native-progress/Bar'; // eslint-disable-line
 import { sharedStyles, images, POST_HEIGHT } from '../utils';
 import { Section } from '../components';
 
-class Post extends Component { // must pass post and onUsernamePress props
+class Post extends Component {
+  // must pass post and onUsernamePress props
+
   state = { width: 0, height: 0 }
 
-  componentDidMount() {
+  componentWillMount() {
     ReactNative.Image.getSize(this.props.post.poster_url, (srcWidth, srcHeight) => {
       const maxHeight = POST_HEIGHT;
       const maxWidth = Dimensions.get('window').width;
@@ -19,7 +21,6 @@ class Post extends Component { // must pass post and onUsernamePress props
       console.log('error:', error);
     });
   }
-
 
   render() {
     const { owner, profile_picture, username, movie_title, poster_url } = this.props.post;

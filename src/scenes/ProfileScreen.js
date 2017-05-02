@@ -4,13 +4,14 @@ import { Page, Profile } from '../components';
 import { urls, params, getData } from '../utils';
 
 class ProfileScreen extends Component {
+  // must pass id of the user to be displayed as navigation param
 
   state = {
     id: -1,
     username: '',
     first_name: '',
     last_name: '',
-    bio: 'placeholder',
+    bio: '',
     profile_picture: 'https://s3.ca-central-1.amazonaws.com/moviebook/default-5.jpg',
     followings: [],
     followers: [],
@@ -19,15 +20,15 @@ class ProfileScreen extends Component {
 
   componentDidMount() {
     const { username, password, token } = this.props.auth;
-    getData(this.requestProfileDetails, this.storeProfile.bind(this),
+    getData(this.requestProfileDetails.bind(this),
+            this.storeProfile.bind(this),
             { username, password, token },
             { id: this.props.navigation.state.params.id })
 
-    setTimeout(() => this.props.navigation.goBack(), 15000)
+    setTimeout(() => this.props.navigation.goBack(), 10000)
   }
 
   onUsernamePress(username, id) {
-    console.log(username)
     this.props.navigation.navigate('Profile', { id })
   }
 
@@ -84,6 +85,7 @@ class ProfileScreen extends Component {
       feed
     } = this.getObjectWithDetails()
     const { isSelf, isFollowed } = this.props
+    
     return (
       <Page>
       <Profile
@@ -106,7 +108,7 @@ class ProfileScreen extends Component {
 }
 
 const mapStateToProps = (store, props) => {
-  const profile_id = props.navigation.state.params.id // id of the profile being displayed
+  const profile_id = props.navigation.state.params.id // id of the profile being pushed for display
 
   if (store.auth.id === profile_id) {
     const { friends, profile, posts, auth } = store

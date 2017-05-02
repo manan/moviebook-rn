@@ -22,6 +22,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: colors.THEME_RED,
     borderRadius: 5,
+    borderWidth: 2,
+    borderColor: colors.THEME_RED
   },
   disabledButtonStyle: {
     flex: 1,
@@ -29,6 +31,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: colors.THEME_RED_LIGHT,
     borderRadius: 5,
+    borderWidth: 2,
+    borderColor: colors.THEME_RED_LIGHT
   }
 });
 

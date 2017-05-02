@@ -4,16 +4,12 @@ import { Post } from './Post';
 
 const Feed = ({ posts, onUsernamePress }) => {
   // must pass posts and onUsernamePress props
-
-  const items = []
-  for (const post of posts) {
-    items.push({ ...post, key: post.id })
-  }
-
+  
   return (
     <FlatList
-      data={items}
+      data={posts}
       removeClippedSubviews={false}
+      keyExtractor={(item, index) => item.id}  // eslint-disable-line
       renderItem={({ item }) => <Post post={item} onUsernamePress={onUsernamePress} />}
     />
   )

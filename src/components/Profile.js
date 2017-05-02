@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, StyleSheet, Dimensions } from 'react-native';
 import Image from 'react-native-image-progress';
 import ProgressBar from 'react-native-progress/Bar'; // eslint-disable-line
-import { sharedStyles, images } from '../utils/';
+import { sharedStyles, images, colors } from '../utils/';
 import { Section, Button, Feed } from '../components';
 
 class Profile extends Component {
@@ -12,10 +12,6 @@ class Profile extends Component {
 
   getWidth() {
     return Dimensions.get('window').width
-  }
-
-  getHeight() {
-    return Dimensions.get('window').height
   }
 
   renderEditProfileButton() {
@@ -29,15 +25,23 @@ class Profile extends Component {
           </Text>
         </Button>
       )
-    } else if (isFollowed) {
+    }
+
+    if (isFollowed) {
       return (
-        <Button style={{ flex: 1 }}>
-          <Text style={[buttonTextStyle, { fontSize: 13 }]}>
+        <Button style={{ flex: 1, backgroundColor: colors.WHITE }}>
+          <Text
+            style={[
+              buttonTextStyle,
+              { backgroundColor: 'transparent', color: colors.THEME_RED, fontSize: 13 }
+            ]}
+          >
             Following
           </Text>
         </Button>
       )
     }
+
     return (
       <Button style={{ flex: 1 }}>
         <Text style={[buttonTextStyle, { fontSize: 13 }]}>

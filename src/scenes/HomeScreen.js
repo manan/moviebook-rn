@@ -5,7 +5,7 @@ import { Section, Page, Feed } from '../components'
 class HomeScreen extends Component {
 
   onUsernamePress(username, id) {
-    console.log(username)
+    console.log(username);
     this.props.navigation.navigate('Profile', { id })
   }
 

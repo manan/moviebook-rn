@@ -27,7 +27,9 @@ const App = () => {
   const home = StackNavigator({
     Newsfeed: { screen: HomeScreen },
     Profile: { screen: ProfileScreen }
-  }, { navigationOptions: navigationOptionsHome })
+  }, {
+    navigationOptions: navigationOptionsHome
+  })
 
   const mainScreens = {
     Home: { screen: home },
