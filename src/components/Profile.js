@@ -21,7 +21,6 @@ class Profile extends Component {
   renderEditProfileButton() {
     const { buttonTextStyle } = sharedStyles
     const { isSelf, isFollowed } = this.props
-    console.log(this.props)
     if (isSelf) {
       return (
         <Button style={{ flex: 1 }}>

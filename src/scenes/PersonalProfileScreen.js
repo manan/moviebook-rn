@@ -57,12 +57,7 @@ const mapStateToProps = store => {
   const { bio, profile_picture } = profile
   const { id, username, first_name, last_name } = auth
 
-  const feed = []
-  for (const post of posts.my_feed) {
-    feed.push({ ...post, key: post.id })
-  }
-
-  return { id, friends, bio, profile_picture, username, first_name, last_name, feed }
+  return { id, friends, bio, profile_picture, username, first_name, last_name, feed: posts.my_feed }
 }
 
 export default connect(mapStateToProps)(PersonalProfileScreen)

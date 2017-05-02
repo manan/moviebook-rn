@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Page, Profile } from '../components';
+import { urls, params, getData } from '../utils';
 
 class ProfileScreen extends Component {
 
@@ -16,7 +17,12 @@ class ProfileScreen extends Component {
   }
 
   componentDidMount() {
-    setTimeout(() => this.props.navigation.goBack(), 5000)
+    const { username, password, token } = this.props.auth;
+    getData(this.requestProfileDetails, this.storeProfile.bind(this),
+            { username, password, token },
+            { id: this.props.navigation.state.params.id })
+
+    setTimeout(() => this.props.navigation.goBack(), 15000)
   }
 
   onProfilePress(username, id) {
@@ -29,6 +35,39 @@ class ProfileScreen extends Component {
       return this.props
     }
     return this.state
+  }
+
+  requestProfileDetails({ token, args }) {
+    const requestParams = {
+      method: 'GET',
+      headers: { Authorization: params.token_request + token },
+    }
+    return fetch(urls.base_url + urls.search_by_ids + args.id + '/', requestParams) // eslint-disable-line
+  }
+
+  storeProfile(data) {
+    const {
+      id,
+      first_name,
+      last_name,
+      username,
+      followers,
+      followings,
+      bio,
+      profile_picture,
+      posts
+    } = data[0]
+    console.log(data[0])
+    this.setState({
+      id,
+      first_name,
+      last_name,
+      username,
+      friends: { followings, followers },
+      bio,
+      profile_picture,
+      feed: posts
+    })
   }
 
   render() {
@@ -72,11 +111,6 @@ const mapStateToProps = (store, props) => {
     const { bio, profile_picture } = profile
     const { id, username, first_name, last_name } = auth
 
-    const feed = []
-    for (const post of posts.my_feed) {
-      feed.push({ ...post, key: post.id })
-    }
-
     return {
       id,
       username,
@@ -85,15 +119,23 @@ const mapStateToProps = (store, props) => {
       bio,
       profile_picture,
       friends,
-      feed,
+      feed: posts.my_feed,
       isSelf: true,
-      isFollowed: friends.followings.indexOf(profile_id) !== -1
+      isFollowed: false
+    }
+  }
+
+  let isFollowed = false
+  for (const following of store.friends.followings) {
+    if (following.user === profile_id) {
+      isFollowed = true
     }
   }
 
   return {
+    auth: store.auth,
     isSelf: false,
-    isFollowed: store.friends.followings.indexOf(profile_id) !== -1
+    isFollowed
   }
 }
 

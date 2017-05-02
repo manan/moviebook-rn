@@ -21,11 +21,7 @@ class HomeScreen extends Component {
 }
 
 const mapStateToProps = store => {
-  const newsfeed = []
-  for (const post of store.posts.newsfeed) {
-    newsfeed.push({ ...post, key: post.id })
-  }
-  return { newsfeed }
+  return { newsfeed: store.posts.newsfeed }
 }
 
 export default connect(mapStateToProps)(HomeScreen);
