@@ -4,7 +4,7 @@ import { Section, Page, Feed } from '../components'
 
 class HomeScreen extends Component {
 
-  onProfilePress(username, id) {
+  onUsernamePress(username, id) {
     console.log(username)
     this.props.navigation.navigate('Profile', { id })
   }
@@ -13,7 +13,7 @@ class HomeScreen extends Component {
     return (
       <Page>
         <Section>
-          <Feed posts={this.props.newsfeed} onProfilePress={this.onProfilePress.bind(this)} />
+          <Feed posts={this.props.newsfeed} onUsernamePress={this.onUsernamePress.bind(this)} />
         </Section>
       </Page>
     )

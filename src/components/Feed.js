@@ -2,8 +2,8 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { Post } from './Post';
 
-const Feed = ({ posts, onProfilePress }) => {
-  // must pass posts and onProfilePress props
+const Feed = ({ posts, onUsernamePress }) => {
+  // must pass posts and onUsernamePress props
 
   const items = []
   for (const post of posts) {
@@ -14,7 +14,7 @@ const Feed = ({ posts, onProfilePress }) => {
     <FlatList
       data={items}
       removeClippedSubviews={false}
-      renderItem={({ item }) => <Post post={item} onProfilePress={onProfilePress} />}
+      renderItem={({ item }) => <Post post={item} onUsernamePress={onUsernamePress} />}
     />
   )
 }

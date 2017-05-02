@@ -12,7 +12,8 @@ class ProfileScreen extends Component {
     last_name: '',
     bio: 'placeholder',
     profile_picture: 'https://s3.ca-central-1.amazonaws.com/moviebook/default-5.jpg',
-    friends: { followings: [], followers: [] },
+    followings: [],
+    followers: [],
     feed: [],
   }
 
@@ -25,7 +26,7 @@ class ProfileScreen extends Component {
     setTimeout(() => this.props.navigation.goBack(), 15000)
   }
 
-  onProfilePress(username, id) {
+  onUsernamePress(username, id) {
     console.log(username)
     this.props.navigation.navigate('Profile', { id })
   }
@@ -57,13 +58,13 @@ class ProfileScreen extends Component {
       profile_picture,
       posts
     } = data[0]
-    console.log(data[0])
     this.setState({
       id,
       first_name,
       last_name,
       username,
-      friends: { followings, followers },
+      followings,
+      followers,
       bio,
       profile_picture,
       feed: posts
@@ -76,7 +77,8 @@ class ProfileScreen extends Component {
       first_name,
       last_name,
       username,
-      friends,
+      followings,
+      followers,
       bio,
       profile_picture,
       feed
@@ -91,12 +93,12 @@ class ProfileScreen extends Component {
         last_name={last_name}
         bio={bio}
         profile_picture={profile_picture}
-        followings={friends.followings}
-        followers={friends.followers}
+        followings={followings}
+        followers={followers}
         feed={feed}
         isSelf={isSelf}
         isFollowed={isFollowed}
-        onUsernamePress={this.onProfilePress.bind(this)}
+        onUsernamePress={this.onUsernamePress.bind(this)}
       />
       </Page>
     )
@@ -112,13 +114,15 @@ const mapStateToProps = (store, props) => {
     const { id, username, first_name, last_name } = auth
 
     return {
+      auth,
       id,
       username,
       first_name,
       last_name,
       bio,
       profile_picture,
-      friends,
+      followings: friends.followings,
+      followers: friends.followers,
       feed: posts.my_feed,
       isSelf: true,
       isFollowed: false

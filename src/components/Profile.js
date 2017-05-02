@@ -8,7 +8,7 @@ import { Section, Button, Feed } from '../components';
 class Profile extends Component {
   // must pass id, username, first_name,
   // last_name, bio, profile_picture, followings,
-  // followers, isFollowed, feed, isSelf and onProfilePress props
+  // followers, isFollowed, feed, isSelf and onUsernamePress props
 
   getWidth() {
     return Dimensions.get('window').width
@@ -49,8 +49,6 @@ class Profile extends Component {
 
   render() {
     const {
-      id,
-      username,
       first_name,
       last_name,
       bio,
@@ -128,7 +126,7 @@ class Profile extends Component {
 
         <View style={{ height: 1, width: this.getWidth(), backgroundColor: '#CDCDCD' }} />
         <Section style={{ flex: 1 }}>
-          <Feed posts={feed} onProfilePress={this.props.onProfilePress} />
+          <Feed posts={feed} onUsernamePress={this.props.onUsernamePress} />
         </Section>
       </View>
     )

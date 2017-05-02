@@ -5,7 +5,7 @@ import ProgressBar from 'react-native-progress/Bar'; // eslint-disable-line
 import { sharedStyles, images, POST_HEIGHT } from '../utils';
 import { Section } from '../components';
 
-class Post extends Component { // must pass post and onProfilePress props
+class Post extends Component { // must pass post and onUsernamePress props
   state = { width: 0, height: 0 }
 
   componentDidMount() {
@@ -36,7 +36,7 @@ class Post extends Component { // must pass post and onProfilePress props
             defaultSource={avatar}
           />
           <View style={viewStyle} >
-            <TouchableOpacity onPress={() => this.props.onProfilePress(username, owner)}>
+            <TouchableOpacity onPress={() => this.props.onUsernamePress(username, owner)}>
               <Text style={simpleFontStyle} numberOfLines={1}>
                 {username}
               </Text>

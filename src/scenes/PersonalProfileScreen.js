@@ -15,7 +15,7 @@ class PersonalProfileScreen extends Component {
       )
   };
 
-  onProfilePress(username, id) {
+  onUsernamePress(username, id) {
     console.log(username)
     console.log(id)
   }
@@ -45,7 +45,7 @@ class PersonalProfileScreen extends Component {
           followers={friends.followers}
           feed={feed}
           isSelf
-          onUsernamePress={this.onProfilePress.bind(this)}
+          onUsernamePress={this.onUsernamePress.bind(this)}
         />
       </Page>
     )
