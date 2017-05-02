@@ -47,8 +47,7 @@ const App = () => {
     Main: mainFlow
   }
 
-  const Navigator = DrawerNavigator(appFlow, { navigationOptions: {
-    lockMode: 'locked-closed',
+  const Navigator = TabNavigator(appFlow, { navigationOptions: {
     tabBarVisible: false
   }
 })
