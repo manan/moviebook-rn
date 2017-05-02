@@ -6,13 +6,13 @@ class ProfileScreen extends Component {
 
   state = {
     id: -1,
-    friends: { followings: [], followers: [] },
-    bio: 'placeholder',
-    profile_picture: 'https://s3.ca-central-1.amazonaws.com/moviebook/default-5.jpg',
     username: '',
     first_name: '',
     last_name: '',
-    my_feed: '',
+    bio: 'placeholder',
+    profile_picture: 'https://s3.ca-central-1.amazonaws.com/moviebook/default-5.jpg',
+    friends: { followings: [], followers: [] },
+    feed: [],
   }
 
   componentDidMount() {
@@ -40,56 +40,60 @@ class ProfileScreen extends Component {
       friends,
       bio,
       profile_picture,
-      my_feed
+      feed
     } = this.getObjectWithDetails()
-    const { isSelf } = this.props
+    const { isSelf, isFollowed } = this.props
     return (
       <Page>
-        <Profile
-          profile={{
-            id,
-            first_name,
-            last_name,
-            username,
-            friends,
-            bio,
-            profile_picture,
-            my_feed,
-            isSelf
-          }}
-          onProfilePress={this.onProfilePress.bind(this)}
-        />
+      <Profile
+        id={id}
+        username={username}
+        first_name={first_name}
+        last_name={last_name}
+        bio={bio}
+        profile_picture={profile_picture}
+        followings={friends.followings}
+        followers={friends.followers}
+        feed={feed}
+        isSelf={isSelf}
+        isFollowed={isFollowed}
+        onUsernamePress={this.onProfilePress.bind(this)}
+      />
       </Page>
     )
   }
 }
 
 const mapStateToProps = (store, props) => {
-  console.log(props)
-  if (store.auth.id === props.navigation.state.params.id) {
+  const profile_id = props.navigation.state.params.id // id of the profile being displayed
+
+  if (store.auth.id === profile_id) {
     const { friends, profile, posts, auth } = store
     const { bio, profile_picture } = profile
     const { id, username, first_name, last_name } = auth
 
-    const my_feed = []
+    const feed = []
     for (const post of posts.my_feed) {
-      my_feed.push({ ...post, key: post.id })
+      feed.push({ ...post, key: post.id })
     }
 
     return {
       id,
-      friends,
-      bio,
-      profile_picture,
       username,
       first_name,
       last_name,
-      my_feed,
-      isSelf: true
+      bio,
+      profile_picture,
+      friends,
+      feed,
+      isSelf: true,
+      isFollowed: friends.followings.indexOf(profile_id) !== -1
     }
   }
+
   return {
-    isSelf: false
+    isSelf: false,
+    isFollowed: store.friends.followings.indexOf(profile_id) !== -1
   }
 }
 

@@ -29,24 +29,23 @@ class PersonalProfileScreen extends Component {
       friends,
       bio,
       profile_picture,
-      my_feed
+      feed
     } = this.props;
 
     return (
       <Page>
         <Profile
-          profile={{
-            id,
-            first_name,
-            last_name,
-            username,
-            friends,
-            bio,
-            profile_picture,
-            my_feed,
-            isSelf: true
-          }}
-          onProfilePress={this.onProfilePress.bind(this)}
+          id={id}
+          username={username}
+          first_name={first_name}
+          last_name={last_name}
+          bio={bio}
+          profile_picture={profile_picture}
+          followings={friends.followings}
+          followers={friends.followers}
+          feed={feed}
+          isSelf
+          onUsernamePress={this.onProfilePress.bind(this)}
         />
       </Page>
     )
@@ -58,12 +57,12 @@ const mapStateToProps = store => {
   const { bio, profile_picture } = profile
   const { id, username, first_name, last_name } = auth
 
-  const my_feed = []
+  const feed = []
   for (const post of posts.my_feed) {
-    my_feed.push({ ...post, key: post.id })
+    feed.push({ ...post, key: post.id })
   }
 
-  return { id, friends, bio, profile_picture, username, first_name, last_name, my_feed }
+  return { id, friends, bio, profile_picture, username, first_name, last_name, feed }
 }
 
 export default connect(mapStateToProps)(PersonalProfileScreen)

@@ -5,7 +5,10 @@ import ProgressBar from 'react-native-progress/Bar'; // eslint-disable-line
 import { sharedStyles, images } from '../utils/';
 import { Section, Button, Feed } from '../components';
 
-class Profile extends Component { // must pass profile and onProfilePress props
+class Profile extends Component {
+  // must pass id, username, first_name,
+  // last_name, bio, profile_picture, followings,
+  // followers, isFollowed, feed, isSelf and onProfilePress props
 
   getWidth() {
     return Dimensions.get('window').width
@@ -15,15 +18,48 @@ class Profile extends Component { // must pass profile and onProfilePress props
     return Dimensions.get('window').height
   }
 
+  renderEditProfileButton() {
+    const { buttonTextStyle } = sharedStyles
+    const { isSelf, isFollowed } = this.props
+    console.log(this.props)
+    if (isSelf) {
+      return (
+        <Button style={{ flex: 1 }}>
+          <Text style={[buttonTextStyle, { fontSize: 13 }]}>
+            Edit Profile
+          </Text>
+        </Button>
+      )
+    } else if (isFollowed) {
+      return (
+        <Button style={{ flex: 1 }}>
+          <Text style={[buttonTextStyle, { fontSize: 13 }]}>
+            Following
+          </Text>
+        </Button>
+      )
+    }
+    return (
+      <Button style={{ flex: 1 }}>
+        <Text style={[buttonTextStyle, { fontSize: 13 }]}>
+          Follow
+        </Text>
+      </Button>
+    )
+  }
+
   render() {
     const {
+      id,
+      username,
       first_name,
       last_name,
-      friends,
       bio,
       profile_picture,
-      my_feed
-    } = this.props.profile
+      followings,
+      followers,
+      feed
+    } = this.props
     const { avatar } = images
     const {
       imageStyle,
@@ -33,8 +69,7 @@ class Profile extends Component { // must pass profile and onProfilePress props
     } = styles;
     const {
       simpleFontStyle,
-      smallFontStyle,
-      buttonTextStyle
+      smallFontStyle
     } = sharedStyles;
 
     return (
@@ -49,7 +84,7 @@ class Profile extends Component { // must pass profile and onProfilePress props
               <Section style={{ flex: 2 }}>
                 <Section style={blockStyle}>
                   <Text style={[simpleFontStyle, { fontSize: 18 }]} >
-                    {my_feed.length}
+                    {feed.length}
                   </Text>
                   <Text style={smallFontStyle}>
                     posts
@@ -58,7 +93,7 @@ class Profile extends Component { // must pass profile and onProfilePress props
 
                 <Section style={blockStyle}>
                   <Text style={[simpleFontStyle, { fontSize: 18 }]}>
-                    {friends.followers.length}
+                    {followers.length}
                   </Text>
                   <Text style={smallFontStyle}>
                     followers
@@ -67,7 +102,7 @@ class Profile extends Component { // must pass profile and onProfilePress props
 
                 <Section style={blockStyle}>
                   <Text style={[simpleFontStyle, { fontSize: 18 }]} >
-                    {friends.followings.length}
+                    {followings.length}
                   </Text>
                   <Text style={smallFontStyle}>
                     followings
@@ -76,11 +111,7 @@ class Profile extends Component { // must pass profile and onProfilePress props
               </Section>
 
               <Section style={{ flex: 1 }}>
-                <Button style={{ flex: 1 }}>
-                  <Text style={[buttonTextStyle, { fontSize: 13 }]}>
-                    Edit Profile
-                  </Text>
-                </Button>
+                {this.renderEditProfileButton()}
               </Section>
             </Section>
 
@@ -98,7 +129,7 @@ class Profile extends Component { // must pass profile and onProfilePress props
 
         <View style={{ height: 1, width: this.getWidth(), backgroundColor: '#CDCDCD' }} />
         <Section style={{ flex: 1 }}>
-          <Feed posts={my_feed} onProfilePress={this.props.onProfilePress} />
+          <Feed posts={feed} onProfilePress={this.props.onProfilePress} />
         </Section>
       </View>
     )
