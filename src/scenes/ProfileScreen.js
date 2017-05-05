@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Body, Profile } from '../components';
+import { Body, Profile } from '../components';
 import { urls, params, getData } from '../utils';
 
 class ProfileScreen extends Component {
   // must pass id of the user to be displayed as navigation param
-  static navigationOptions = {
-    headerRight: <Button style={{ width: 30, height: 30 }} onPress={() => console.log('yolo')} />,
-  }
 
   state = {
     id: -1,
