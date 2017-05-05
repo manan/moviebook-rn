@@ -3,9 +3,9 @@ import { Image } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
-import { TabNavigator, DrawerNavigator, StackNavigator } from 'react-navigation';
+import { TabNavigator, StackNavigator } from 'react-navigation';
 import reducers from './reducers';
-import { colors, images, sharedStyles } from './utils';
+import { colors, sharedStyles, images } from './utils';
 import LoginScreen from './scenes/LoginScreen';
 import HomeScreen from './scenes/HomeScreen';
 import SearchScreen from './scenes/SearchScreen';
@@ -15,14 +15,13 @@ import ProfileScreen from './scenes/ProfileScreen';
 
 const App = () => {
   const navigationOptionsHome = {
-    header: null,
     tabBarIcon: ({ tintColor }) => (
         <Image
           source={images.home}
           style={[sharedStyles.tabBarIconStyle, { tintColor }]}
         />
       )
-  };
+  }
 
   const home = StackNavigator({
     Newsfeed: { screen: HomeScreen },
@@ -47,10 +46,7 @@ const App = () => {
     Main: mainFlow
   }
 
-  const Navigator = TabNavigator(appFlow, { navigationOptions: {
-    tabBarVisible: false
-  }
-})
+  const Navigator = TabNavigator(appFlow, { navigationOptions: { tabBarVisible: false } })
 
   return (
     <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>

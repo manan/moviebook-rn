@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Page, Profile } from '../components';
+import { Button, Body, Profile } from '../components';
 import { urls, params, getData } from '../utils';
 
 class ProfileScreen extends Component {
   // must pass id of the user to be displayed as navigation param
+  static navigationOptions = {
+    headerRight: <Button style={{ width: 30, height: 30 }} onPress={() => console.log('yolo')} />,
+  }
 
   state = {
     id: -1,
@@ -85,9 +88,9 @@ class ProfileScreen extends Component {
       feed
     } = this.getObjectWithDetails()
     const { isSelf, isFollowed } = this.props
-    
+
     return (
-      <Page>
+      <Body>
       <Profile
         id={id}
         username={username}
@@ -102,7 +105,7 @@ class ProfileScreen extends Component {
         isFollowed={isFollowed}
         onUsernamePress={this.onUsernamePress.bind(this)}
       />
-      </Page>
+      </Body>
     )
   }
 }
