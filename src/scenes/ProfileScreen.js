@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { Body, Profile } from '../components';
 import { urls, params, getData } from '../utils';
@@ -87,22 +88,24 @@ class ProfileScreen extends Component {
     const { isSelf, isFollowed } = this.props
 
     return (
-      <Body>
-      <Profile
-        id={id}
-        username={username}
-        first_name={first_name}
-        last_name={last_name}
-        bio={bio}
-        profile_picture={profile_picture}
-        followings={followings}
-        followers={followers}
-        feed={feed}
-        isSelf={isSelf}
-        isFollowed={isFollowed}
-        onUsernamePress={this.onUsernamePress.bind(this)}
-      />
-      </Body>
+      <View style={{ flex: 1, backgroundColor: 'blue' }}>
+        <Body>
+          <Profile
+            id={id}
+            username={username}
+            first_name={first_name}
+            last_name={last_name}
+            bio={bio}
+            profile_picture={profile_picture}
+            followings={followings}
+            followers={followers}
+            feed={feed}
+            isSelf={isSelf}
+            isFollowed={isFollowed}
+            onUsernamePress={this.onUsernamePress.bind(this)}
+          />
+        </Body>
+      </View>
     )
   }
 }

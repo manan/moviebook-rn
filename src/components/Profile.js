@@ -10,10 +10,6 @@ class Profile extends Component {
   // last_name, bio, profile_picture, followings,
   // followers, isFollowed, feed, isSelf and onUsernamePress props
 
-  getWidth() {
-    return Dimensions.get('window').width
-  }
-
   renderEditProfileButton() {
     const { buttonTextStyle } = sharedStyles
     const { isSelf, isFollowed } = this.props
@@ -64,7 +60,6 @@ class Profile extends Component {
     const { avatar } = images
     const {
       imageStyle,
-      containerStyle,
       outerSectionOverride,
       blockStyle
     } = styles;
@@ -74,11 +69,11 @@ class Profile extends Component {
     } = sharedStyles;
 
     return (
-      <View style={[containerStyle, { width: this.getWidth() }]} >
+      <View style={{ flex: 1 }} >
 
-        <Section style={[outerSectionOverride, { width: this.getWidth() }]} >
+        <Section style={outerSectionOverride} >
 
-          <Section style={{ justifyContent: 'space-between', width: this.getWidth() }} >
+          <Section style={{ justifyContent: 'space-between' }} >
             <Image style={imageStyle} source={{ uri: profile_picture }} defaultSource={avatar} />
 
             <Section style={{ flex: 1, flexDirection: 'column', marginLeft: 30, marginRight: 30 }}>
@@ -128,7 +123,9 @@ class Profile extends Component {
 
         </Section>
 
-        <View style={{ height: 1, width: this.getWidth(), backgroundColor: '#CDCDCD' }} />
+        <View
+          style={{ width: Dimensions.get('window').width, height: 1, backgroundColor: 'black' }}
+        />
         <Section style={{ flex: 1 }}>
           <Feed posts={feed} onUsernamePress={this.props.onUsernamePress} />
         </Section>
@@ -138,11 +135,6 @@ class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
-  containerStyle: {
-    flex: 1,
-    flexDirection: 'column',
-    alignSelf: 'flex-start',
-  },
   blockStyle: {
     justifyContent: 'center',
     alignItems: 'center',

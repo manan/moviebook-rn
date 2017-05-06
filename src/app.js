@@ -15,6 +15,7 @@ import ProfileScreen from './scenes/ProfileScreen';
 
 const App = () => {
   const navigationOptionsHome = {
+    header: null,
     tabBarIcon: ({ tintColor }) => (
         <Image
           source={images.home}

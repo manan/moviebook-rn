@@ -42,8 +42,7 @@ const sharedStyles = {
   bodyStyle: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: colors.WHITE,
-    marginTop: 0
+    backgroundColor: colors.LIGHT_GREY,
   },
   tabBarIconStyle: {
     width: 25,
