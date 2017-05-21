@@ -11,6 +11,6 @@ Here are some screenshots (Login, Home and Profile screen) of the application:
 
 PS: There are some unfunctional buttons like 'settings' that aren't coded yet. I had learnt what I had to with the project and decided to move forward with a different project.
 
-PPS: Unfortunately, I was planning on building the signup pages last but since I am discontinuing the project, I won't be building the sign up pages. HOWEVER, play around with the [RESTFul API](https://github.com/mehtamanan/MoviebookAPI)... you can signup by sending a POST request to https://themoviebook.herokuapp.com/signup/ with keys email, username, first_name, last_name and password.
+PPS: Unfortunately, I was planning on building the signup pages last but since I am discontinuing the project, I won't be building the sign up pages. HOWEVER, play around with the [RESTFul API](https://github.com/mehtamanan/MoviebookAPI)... you can signup by sending a POST request to https://themoviebook.herokuapp.com/signup/ with keys email, username, first_name, last_name and password. You'll need to put an email address in MoviebookAPI's setting file before you sign up (this will be the admin email), otherwise /signup/ will not work.
 
 Cheers!
